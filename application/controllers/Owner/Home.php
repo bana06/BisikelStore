@@ -3,9 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
+	private $table = 'tbl_user';
+
 	public function index()
 	{
-		echo "tes home";		
+		$data['user'] = $this->all->mengambil($this->table, ['id_user'=> $this->session->userdata('id_user')] )->row();
+		echo "tes home ".$data['user']->fullname;
+		echo "<a href=".site_url('Auth/logout').">Keluar OM!</a>";
 	}
 
 }

@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
 
 	public function validation()
 	{
-	    $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|min_length[3]');
+		$this->form_validation->set_rules('fullname', 'fullname', 'trim|required|min_length[3]');
 		$this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required|min_length[12]');
 		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'password', 'trim|required|min_length[5]');
@@ -20,15 +20,15 @@ class Auth extends CI_Controller {
 
 	public function login()
 	{
-		$this->validation();
+		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'password', 'trim|required|min_length[5]');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('Auth/login');
-			// echo $this->input->post('email');
-			// echo $this->input->post('password');
-			// $this->session->set_flashdata('message', '<div class="alert alert-danger">Lah ko salah! Validasinya ngapa si!</div>');
 		} else {
-			$this->_login;
+			# code...
+			$this->_login();
+			// return redirect('Auth','refresh');
 		}
 		
 	}
@@ -40,20 +40,25 @@ class Auth extends CI_Controller {
 
 		$user = $this->all->mengambil($this->table, ['email'=>$email] )->row();
 
-		var_dump($email);
-		die;
+		// var_dump($user);
+		// die;
 
 		if ($user) {
-			if (password_verify($password, $user['password'])) {
+			if (password_verify($password, $user->password)) {
 				$data = [
+					'id_user'  => $user->id_user,
 					'fullname'  => $user->fullname,
 					'email'     => $email,
-					'password'  => $password,
 					'id_level'  => $user->id_level
 				];
 
 				$this->session->set_userdata($data);
-				redirect('Owner/Home','refresh');
+
+				if ($user->id_level == 1) {
+					redirect('Owner/Home','refresh');
+				} else {
+					echo "user";
+				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger">Password salah!</div>');
 				redirect('Auth','refresh');
@@ -94,8 +99,19 @@ class Auth extends CI_Controller {
 
 			return redirect('Auth','refresh');
 		}
-		
 
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		$this->session->unset_userdata('id_user');
+		$this->session->unset_userdata('fullname');
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('id_level');
+
+		$this->session->set_flashdata('message', '<div class="alert alert-success">Yah Kamu telah keluar. Silahkan Login kembali!</div>');
+		return redirect('Auth','refresh');
 	}
 
 }
