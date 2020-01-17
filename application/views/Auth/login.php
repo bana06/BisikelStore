@@ -40,7 +40,7 @@
                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang di BisikelStore</h1>
                   </div>
                   <?= $this->session->flashdata('message'); ?>
-                  <form action="<?= site_url('Auth/login') ?>" method="POST" class="user">
+                  <form action="<?= site_url('Auth/login'); ?>" method="POST" class="user">
                     <div class="form-group">
                       <input name="email" type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="Masukkan Email... seperti : contoh@email.com" value="<?= set_value('email') ?>">
                       <?= form_error('email', '<div class="text-danger">', '</div>') ?>
