@@ -13,12 +13,15 @@ class LibOwner
 	public function page($content, $data = NULL)
 	{
 	    $datas = [
-			'header'  => $this->ci->load->view('Auth/Components/header', $data, true),
-			'content' => $this->ci->load->view('Auth/'.$content, $data, FALSE),
-			'footer'  => $this->ci->load->view('Auth/Components/footer', $data, FALSE)
+			'header'       => $this->ci->load->view('Owner/Components/header', $data, true),
+			'sidebar'      => $this->ci->load->view('Owner/Components/sidebar', $data, true),
+			'topbar'       => $this->ci->load->view('Owner/Components/topbar', $data, true),
+			'content'      => $this->ci->load->view('Owner/'.$content, $data, true),
+			'footer'       => $this->ci->load->view('Owner/Components/footer', $data, true),
+			'logout_modal' => $this->ci->load->view('Owner/Components/logout_modal', $data, true),
 	    ];
 
-	    return $this->ci->load->view('Auth/cores', $datas);
+	    return $this->ci->load->view('Owner/index', $datas);
 	}
 
 }

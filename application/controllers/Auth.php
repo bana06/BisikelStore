@@ -57,11 +57,11 @@ class Auth extends CI_Controller {
 				if ($user->id_level == 1) {
 					redirect('Owner/Home','refresh');
 				} else {
-					echo "user";
+					redirect('User/Home','refresh');
 				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger">Password salah!</div>');
-				redirect('Auth','refresh');
+				redirect('Auth/login','refresh');
 			}
 			
 		} else {
@@ -90,14 +90,14 @@ class Auth extends CI_Controller {
 				'tgl_lahir' => $this->input->post('tgl_lahir'),
 				'jk'        => $this->input->post('jk'),
 				'password'  => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-				'id_level'  => 1,
+				'id_level'  => 2,
 				// 'photo_user' => NULL,
 			];
 
 			$this->all->menambah($this->table, $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success">Selamat! Anda Berhasil mendaftar. Silahkan Masuk untuk melanjutkan</div>');
 
-			return redirect('Auth','refresh');
+			return redirect('Auth/login','refresh');
 		}
 
 	}
@@ -111,7 +111,7 @@ class Auth extends CI_Controller {
 		$this->session->unset_userdata('id_level');
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success">Yah Kamu telah keluar. Silahkan Login kembali!</div>');
-		return redirect('Auth','refresh');
+		return redirect('Auth/login','refresh');
 	}
 
 }
