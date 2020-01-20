@@ -76,7 +76,7 @@ class All_mod extends CI_Model {
 	//Update one item
 	public function update($table, $where, $data )
 	{
-		$this->db->where('$where');
+		$this->db->where($where);
 		if ($this->db->update($table, $data)) {
 			return [
 				'status' => 'berhasil'
