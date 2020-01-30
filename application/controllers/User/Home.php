@@ -12,8 +12,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		// echo "hal user";
-		$this->load->view('User/index');
+		$this->lo->pageUser('dashboard');
 	}
 
 }

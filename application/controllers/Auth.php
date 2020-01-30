@@ -7,7 +7,7 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		return redirect(site_url('Auth/login'));
+		return redirect(site_url('User/Home'));
 	}
 
 	public function validation()

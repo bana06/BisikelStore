@@ -24,6 +24,17 @@ class LibOwner
 	    return $this->ci->load->view('Owner/index', $datas);
 	}
 
+	public function pageUser($content, $data = NULL)
+	{
+	    $datas = [
+	    	'header' => $this->ci->load->view('User/Components/header', $data, true),
+	    	'topbar' => $this->ci->load->view('User/Components/topbar', $data, true),
+	    	'content' => $this->ci->load->view('User/'.$content, $data, true),
+	    ];
+
+	    return $this->ci->load->view('User/index', $datas);
+	}
+
 }
 
 /* End of file LibOwner.php */
