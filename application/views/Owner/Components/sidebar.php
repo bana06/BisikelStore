@@ -23,19 +23,19 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Interface
+    Management
   </div>
 
   <li class="nav-item">
-    <a class="nav-link" href="<?= site_url('Owner/Home') ?>">
-      <i class="fas fa-fw fa-box"></i>
+    <a class="nav-link" href="<?= site_url('Owner/Barang') ?>">
+      <i class="fas fa-fw fa-boxes"></i>
       <span>Barang saya</span></a>
   </li>
 
   <li class="nav-item">
     <a class="nav-link" href="<?= site_url('Owner/Home/notfound') ?>">
-      <i class="fas fa-fw fa-user"></i>
-      <span>Cooming soon</span></a>
+      <i class="fas fa-fw fa-box"></i>
+      <span>Management Brand</span></a>
   </li>
 
   <hr class="sidebar-divider">
@@ -47,7 +47,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="<?= site_url('Owner/Home/myprofile') ?>">
+    <a class="nav-link" href="<?= site_url('Owner/Home/edit_profile') ?>">
       <i class="fas fa-fw fa-key"></i>
       <span>Ubah Kata Sandi</span></a>
   </li>

@@ -22,6 +22,7 @@ class Home extends CI_Controller {
 		$data['allUser']     = $this->all->mengambil($this->table)->num_rows();
 
 		$data['fullname'] = $data['user']->fullname;
+		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
 		
 		$this->lo->page('dashboard', $data);
 		// $this->load->view('Owner/index', $data);
@@ -34,6 +35,8 @@ class Home extends CI_Controller {
 		// data user sebagai get data from DB
 		$data['user']     = $this->all->mengambil($this->table, ['id_user'=> $this->session->userdata('id_user')] )->row();
 		$data['fullname'] = $data['user']->fullname;
+		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
+
 		
 		$this->lo->page('notfound', $data);
 	}
@@ -51,8 +54,23 @@ class Home extends CI_Controller {
 		$data['jk']        = $data['user']->jk;
 		$data['tgl_lahir'] = $data['user']->tgl_lahir;
 		$data['profile']   = $data['user']->photo_user;
+		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
+		
 		
 		$this->lo->page('profile', $data);
+	}
+
+	public function edit_profile()
+	{
+		$data['tajuk']     = 'BS Admin - Ubah Password';
+		// data user sebagai get data from DB
+		$data['user']      = $this->all->mengambil($this->table, ['id_user'=> $this->session->userdata('id_user')] )->row();
+		//utk menampilkan data from DB
+		$data['fullname']  = $data['user']->fullname;
+		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
+		
+		
+		$this->lo->page('ubah_password', $data);
 	}
 
 }

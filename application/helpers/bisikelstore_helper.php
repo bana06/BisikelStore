@@ -7,7 +7,7 @@
 
 		// jika session kosong
 		if (!$ci->session->userdata('email')) {
-			redirect('Auth/login','refresh');
+			redirect('User/Home','refresh');
 		} else {
 			$id_level = $ci->session->userdata('id_level');
 
