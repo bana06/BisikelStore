@@ -33,7 +33,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="<?= site_url('Owner/Home/notfound') ?>">
+    <a class="nav-link" href="<?= site_url('Owner/Brand') ?>">
       <i class="fas fa-fw fa-box"></i>
       <span>Management Brand</span></a>
   </li>

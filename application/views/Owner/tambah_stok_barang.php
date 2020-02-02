@@ -14,7 +14,9 @@
   <div class="col-md-7">
     <div class="card shadow mb-4">
       <div class="card-body">
-      <form action="">
+      <form action="<?= site_url('Owner/Barang/tambah_stok') ?>" method="POST">
+        <input type="hidden" name="id_brg" value="<?= $brg->id_brg ?>">
+        <input type="hidden" name="stok" value="<?= $brg->stok ?>">
         <div class="form-group">
           <label for="">Nama Barang</label>
           <input type="text" name="nama_brg" value="<?= $brg->nama_brg ?>" placeholder="Masukkan nama barang disini..." class="form-control" readonly>
@@ -27,7 +29,7 @@
           </div>
           <div class="col-md-4 mb-5">
             <label for="">Tambah Jumlah Stok</label>
-            <input type="number" name="stok" value="" placeholder="00" class="form-control">
+            <input type="number" name="stok_baru" value="" placeholder="00" class="form-control">
           </div>
          </div>
         </div>

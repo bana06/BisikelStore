@@ -56,8 +56,24 @@
               <img class="img-fluid" src="<?= site_url('assets/img/barang/').$data->photo_brg ?>" width="100px" height="100px">
             </td>
             <td><?= $data->nama_brg ?></td>
-            <td><?= 'Rp '.$data->harga_brg ?></td>
-            <td><?= $data->stok ?></td>
+            <td>
+              <?php
+                if ($data->harga_brg) {
+                  echo 'Rp '.$data->harga_brg;
+                } else {
+                  echo "-";
+                }
+              ?>  
+            </td>
+            <td>
+              <?php
+                if ($data->stok) {
+                  echo $data->stok;
+                } else {
+                  echo "-";
+                }
+              ?>  
+            </td>
             <td>
             <?php
               if ($data->id_status = 1) {
@@ -70,8 +86,8 @@
               
             ?>  
             </td>
-            <td><?= $data->id_brand ?></td>
-            <td><?= $data->id_kategori_brg ?></td>
+            <td><?= $data->brand ?></td>
+            <td><?= $data->kategori_brg ?></td>
             <td><?= $data->deskripsi ?></td>
             <td>
               <div class="dropcenter">

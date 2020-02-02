@@ -5,20 +5,20 @@
   <div class="col-md-7">
     <div class="card shadow mb-4">
       <div class="card-body">
-      <form action="">
+      <?= form_open_multipart('Owner/Barang/add_brg') ?>
         <div class="form-group">
           <label for="">Nama Barang</label>
-          <input type="text" name="nama_brg" value="" placeholder="Masukkan nama barang disini..." class="form-control">
+          <input type="text" name="nama_brg" value="" placeholder="Masukkan nama barang disini..." class="form-control" required>
         </div>
         <div class="form-group">
          <div class="row">
             <div class="col-md-9">
             <label for="">Harga Barang [satuan]</label>
-            <input type="text" name="harga_brg" value="" placeholder="000000" class="form-control">
+            <input type="text" name="harga_brg" value="" placeholder="000000" class="form-control" required>
           </div>
           <div class="col-md-3">
             <label for="">Stok</label>
-            <input type="number" name="stok" value="" placeholder="00" class="form-control">
+            <input type="number" name="stok" value="" placeholder="00" class="form-control" required>
           </div>
          </div>
         </div>
@@ -28,14 +28,22 @@
           <label for="">Brand</label>
           <select name="id_brand" id="" class="form-control">
             <option value="">Pilih Brand</option>
-            <option value="">ANU</option>
+            <?php
+              foreach ($brand as $q) {
+            ?>
+              <option value="<?= $q->id_brand ?>"><?= $q->brand ?></option>
+            <?php } ?>
           </select>
         </div>
         <div class="form-group">
           <label for="">Kategori</label>
           <select name="id_kategori_brg" id="" class="form-control">
             <option value="">Pilih Kategori Barang</option>
-            <option value="">ANU</option>
+            <?php
+              foreach ($kategori as $kt) {
+            ?>
+              <option value="<?= $kt->id_kategori_brg ?>"><?= $kt->kategori_brg ?></option>
+            <?php } ?>
           </select>
         </div>
         <div class="form-group">
