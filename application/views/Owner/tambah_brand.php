@@ -1,5 +1,5 @@
 <!-- Page Heading -->
-<h1 class="h3 mb-3 text-gray-800">Tambah Stok Barang</h1>
+<h1 class="h3 mb-3 text-gray-800">Tambah Brand Baru</h1>
 <!-- DataTales Example -->
 <div class="row">
   <div class="col-md-6">
@@ -7,7 +7,7 @@
       <div class="card-body">
       <?= form_open_multipart('Owner/Brand/add_brand')?>
         <div class="form-group">
-          <label for="">Nama Barang</label>
+          <label for="">Nama Brand</label>
           <input type="text" name="brand" value="" placeholder="Masukkan Brand disini..." class="form-control">
         </div>
         <!-- <div class="form-group">

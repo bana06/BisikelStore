@@ -26,6 +26,7 @@
         </div>
         <div class="form-group">
           <label for="">Brand</label>
+          <a href="<?= site_url('Owner/Brand/add_index') ?>" class="float-right">Brand tidak ada? Masukkan sekarang!</a>
           <select name="id_brand" id="" class="form-control">
             <option value="">Pilih Brand</option>
             <?php

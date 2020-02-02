@@ -97,7 +97,7 @@
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a href="<?= site_url('Owner/Barang/add_stok/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-plus " style="color:aqua;"></i> Tambah Stok</a><hr>
                     <a href="<?= site_url('Owner/Barang/edit_index/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-edit " style="color:green;"></i> Edit</a><hr>
-                    <a href="<?= site_url('Owner/Barang/ubah_index/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-trash" style="color:red;"></i> Hapus</a>
+                    <a href="<?= site_url('Owner/Barang/delete_brg/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-trash" style="color:red;"></i> Hapus</a>
                   </div>
                 </div>
             </td>

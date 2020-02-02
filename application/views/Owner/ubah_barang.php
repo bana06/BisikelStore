@@ -5,8 +5,9 @@
   <div class="col-md-7">
     <div class="card shadow mb-4">
       <div class="card-body">
-      <form action="">
+      <?= form_open_multipart('Owner/Barang/edit_brg') ?>
         <div class="form-group">
+          <input type="hidden" name="id_brg" value="<?= $brg->id_brg ?>">
           <label for="">Nama Barang</label>
           <input type="text" name="nama_brg" value="<?= $brg->nama_brg ?>" placeholder="Masukkan nama barang disini..." class="form-control">
         </div>
@@ -27,21 +28,32 @@
         <div class="form-group">
           <label for="">Brand</label>
           <select name="id_brand" id="" class="form-control">
+            <option value=""><?= $brg->brand ?></option>
             <option value="">Pilih Brand</option>
-            <option value="">ANU</option>
+            <?php
+              foreach ($brand as $q) {
+            ?>
+              <option value="<?= $q->id_brand ?>"><?= $q->brand ?></option>
+            <?php } ?>
           </select>
         </div>
         <div class="form-group">
           <label for="">Kategori</label>
           <select name="id_kategori_brg" id="" class="form-control">
+            <option value=""><?= $brg->kategori_brg ?></option>
             <option value="">Pilih Kategori Barang</option>
-            <option value="">ANU</option>
+            <?php
+              foreach ($kategori as $kt) {
+            ?>
+              <option value="<?= $kt->id_kategori_brg ?>"><?= $kt->kategori_brg ?></option>
+            <?php } ?>
           </select>
         </div>
         <div class="form-group">
           <label for="">Gambar Barang</label>
           <input type="file" name="photo_brg" value="" class="form-control">
-          <img src="" alt="">
+          <label for="">*Gambar sebelumnya </label>
+          <img class="img-fluid mt-3 ml-3" src="<?= site_url('assets/img/barang/').$brg->photo_brg ?>" width="100px" height="100px">
         </div>
         <div class="form-group">
           <label for="">Deskripsi</label>
@@ -51,7 +63,6 @@
           <a href="<?= site_url('Owner/Barang') ?>" class="btn btn-default">Batal</a>
           <button class="btn btn-success">Simpan</button>
         </div>
-      </form>
       </div>
     </div>
   </div>

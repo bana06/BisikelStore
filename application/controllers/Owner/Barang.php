@@ -30,15 +30,15 @@ class Barang extends CI_Controller {
 
 	public function add_index()
 	{
-		$data['error'] = '';
-
+		$data['error']         = '';
+		
 		$data['tajuk']         = 'BS Admin - Tambah Barang saya';
 		$data['user']          = $this->all->mengambil('tbl_user', ['id_user'=> $this->session->userdata('id_user')] )->row();
 		$data['fullname']      = $data['user']->fullname;
 		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
 		
 		$data['brand']         = $this->all->mengambil('tbl_brand')->result();
-		$data['kategori']         = $this->all->mengambil('tbl_kategori_brg')->result();
+		$data['kategori']      = $this->all->mengambil('tbl_kategori_brg')->result();
 		
 		$this->lo->page('tambah_barang', $data);
 	}
@@ -49,8 +49,10 @@ class Barang extends CI_Controller {
 		$data['user']          = $this->all->mengambil('tbl_user', ['id_user'=> $this->session->userdata('id_user')] )->row();
 		$data['fullname']      = $data['user']->fullname;
 		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
+		$data['brand']         = $this->all->mengambil('tbl_brand')->result();
+		$data['kategori']      = $this->all->mengambil('tbl_kategori_brg')->result();
 		//get barang utk diubah
-		$data['brg']           = $this->all->mengambil($this->table, ['id_brg'=>$id_brg])->row();
+		$data['brg']           = $this->brg->getWithJoin($id_brg)->row();
 		
 		$this->lo->page('ubah_barang', $data);
 	}
@@ -114,6 +116,69 @@ class Barang extends CI_Controller {
 	    $this->all->update($this->table, ['id_brg'=>$id_brg], $data);
 	    redirect(site_url('Owner/Barang'),'refresh');
 
+	}
+
+	public function edit_brg()
+    {
+	    $id_brg = $this->input->post('id_brg');
+
+	    $config['upload_path']          = './assets/img/barang/';
+	    $config['allowed_types']        = 'gif|jpg|png|jpeg';
+	    $config['max_size']             = 0;
+	    $config['max_width']            = 0;
+	    $config['max_height']           = 0;
+	    $config['overwrite']           = TRUE;
+	    $this->load->library('upload', $config);
+	    if (!$this->upload->do_upload('photo_brg')){
+	            $data = array(
+				'nama_brg'        => $this->input->post('nama_brg'),
+				'harga_brg'       => $this->input->post('harga_brg'),
+				'stok'            => $this->input->post('stok'),
+				'id_brand'        => $this->input->post('id_brand'),
+				'id_kategori_brg' => $this->input->post('id_kategori_brg'),
+				'deskripsi'       => $this->input->post('deskripsi'),
+				'id_status'       => 1,
+	            );
+	        $query = $this->all->update($this->table, ['id_brg'=>$id_brg], $data);
+	        if($query){
+	            echo 'berhasil di upload';
+	            redirect(site_url('Owner/Barang'));
+	        }else{
+	            echo 'gagal upload';
+	        }
+	    }else{
+	        $_data = array('upload_data' => $this->upload->data());
+	         $data = array(
+				'nama_brg'        => $this->input->post('nama_brg'),
+				'harga_brg'       => $this->input->post('harga_brg'),
+				'stok'            => $this->input->post('stok'),
+				'id_brand'        => $this->input->post('id_brand'),
+				'id_kategori_brg' => $this->input->post('id_kategori_brg'),
+				'deskripsi'       => $this->input->post('deskripsi'),
+				'id_status'       => 1,
+				'photo_brg'       => $_data['upload_data']['file_name']
+	            );
+	        $query = $this->all->update($this->table, ['id_brg'=>$id_brg], $data);
+	        if($query){
+	            echo 'berhasil di upload';
+	            redirect(site_url('Owner/Barang'));
+	        }else{
+	            echo 'gagal upload';
+	        }
+	    }
+	}
+
+	public function delete_brg($id_brg)
+	{
+	    //hapus gambar
+	    $get_data = $this->all->mengambil($this->table, ['id_brg'=>$id_brg])->row();
+	    $query = $this->all->delete($this->table, ['id_brg'=>$id_brg]);
+	    
+	    if ($query) {
+	    	unlink('assets/img/barang/'.$get_data->photo_brg);
+	    }
+	    
+        redirect(site_url('Owner/Barang'));
 	}
 
 }
