@@ -26,16 +26,16 @@
 							</ul>
 						</li>
 					
+						<li class="nav-item"><a class="nav-link" href="<?= site_url('User/Contact') ?>">Contact</a></li>
+
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-							 aria-expanded="false">Pages</a>
-							<ul class="dropdown-menu">
-								<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-								<li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-								<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+							 aria-expanded="false"><span class="ti-user"></span></a>
+							<ul class="dropdown-menu ">
+								<li class="nav-item"><a class="nav-link" href="<?= site_url('Auth/login') ?>">Login</a></li>
+								<li class="nav-item"><a class="nav-link" href="<?= site_url('Auth/register') ?>">Register</a></li>
 							</ul>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="<?= site_url('User/Contact') ?>">Contact</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
