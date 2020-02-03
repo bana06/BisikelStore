@@ -11,7 +11,7 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
+<!-- index -->
     <!-- Sidebar -->
     <?= $sidebar ?>
     <!-- End of Sidebar -->
