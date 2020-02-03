@@ -35,6 +35,8 @@ class LibOwner
 	    return $this->ci->load->view('User/index', $datas);
 	}
 
+	
+
 }
 
 /* End of file LibOwner.php */
