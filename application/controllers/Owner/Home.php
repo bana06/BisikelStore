@@ -19,10 +19,11 @@ class Home extends CI_Controller {
 		$data['tajuk']    = 'BS Admin - Dashboard';
 		// data user sebagai get data from DB
 		$data['user']     = $this->all->mengambil($this->table, ['id_user'=> $this->session->userdata('id_user')] )->row();
-		$data['allUser']     = $this->all->mengambil($this->table)->num_rows();
-
 		$data['fullname'] = $data['user']->fullname;
 		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
+
+		$data['allUser']     = $this->all->mengambil($this->table)->num_rows();
+		$data['allBarang']     = $this->all->mengambil('tbl_brg')->num_rows();
 		
 		$this->lo->page('dashboard', $data);
 		// $this->load->view('Owner/index', $data);
