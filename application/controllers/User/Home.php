@@ -12,7 +12,10 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->lo->pageUser('dashboard');
+		$data['brg'] = $this->all->mengambil('tbl_brg')->result();
+		// var_dump($data['brg']);
+		// die;
+		$this->lo->pageUser('dashboard', $data);
 	}
 
 }

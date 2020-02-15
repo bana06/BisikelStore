@@ -146,5 +146,6 @@ $autoload['language'] = array();
 $autoload['model'] = array(
 	'All_mod' => 'all',
 	'Owner_brg_mod' => 'brg',
+	'User_mod' => 'um',
 	
 );
