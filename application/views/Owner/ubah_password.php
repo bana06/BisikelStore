@@ -5,14 +5,15 @@
   <div class="col-md-7">
     <div class="card shadow mb-4">
       <div class="card-body">
-      <form action="">
+      <form action="<?= site_url('Owner/Home/edit_password') ?>" method="POST">
+        <?= $this->session->flashdata('error'); ?>
         <div class="form-group">
           <label for="">Kata Sandi Baru</label>
-          <input type="password" name="nama_brg" value="" placeholder="Masukkan kata sandi disini..." class="form-control">
+          <input type="password" name="password" value="" placeholder="Masukkan kata sandi baru disini..." class="form-control">
         </div>
         <div class="form-group">
           <label for="">Ulangi Kata Sandi Baru</label>
-          <input type="password" name="nama_brg" value="" placeholder="Masukkan kembali kata sandi disini..." class="form-control">
+          <input type="password" name="password2" value="" placeholder="Masukkan kembali kata sandi disini..." class="form-control">
         </div>
         <div class="float-right">
           <a href="<?= site_url('Owner/Barang') ?>" class="btn btn-default">Batal</a>

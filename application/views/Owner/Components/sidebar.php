@@ -47,7 +47,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="<?= site_url('Owner/Home/edit_profile') ?>">
+    <a class="nav-link" href="<?= site_url('Owner/Home/reset_password') ?>">
       <i class="fas fa-fw fa-key"></i>
       <span>Ubah Kata Sandi</span></a>
   </li>

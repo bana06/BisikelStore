@@ -61,7 +61,7 @@ class Home extends CI_Controller {
 		$this->lo->page('profile', $data);
 	}
 
-	public function edit_profile()
+	public function reset_password()
 	{
 		$data['tajuk']     = 'BS Admin - Ubah Password';
 		// data user sebagai get data from DB
@@ -70,8 +70,31 @@ class Home extends CI_Controller {
 		$data['fullname']  = $data['user']->fullname;
 		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
 		
-		
+
+
 		$this->lo->page('ubah_password', $data);
+	}
+
+	//query reset password
+	public function edit_password()
+	{
+		$password = $this->input->post('password');
+		$password2 = $this->input->post('password2');
+
+		if ($password != $password2) {
+			echo "<script>alert('tes')</script>";
+		} else {
+			$id_user = $this->session->userdata('id_user');
+		    $isi = [
+		    	'password' => password_hash($password, PASSWORD_DEFAULT),
+		    ];
+			// var_dump($isi);
+			// die;
+
+			$this->all->update($this->table, ['id_user'=>$id_user], $isi);
+			redirect(site_url('Owner/Home'),'refresh');
+		}
+		
 	}
 
 }
