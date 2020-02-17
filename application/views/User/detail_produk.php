@@ -33,31 +33,53 @@
 			</div>
 			<div class="col-lg-5 offset-lg-1">
 				<div class="s_product_text">
+	<!-- form -->
+				<form action="<?= site_url('User/Cart/inputToCart') ?>" method="POST">
+					<input type="hidden" name="id_brg" value="<?= $brg->id_brg ?>">
+					<input type="hidden" name="harga_brg" value="<?= $brg->harga_brg ?>">
+					<input type="hidden" name="id_status" value="<?= $brg->id_status ?>">
+					<input type="hidden" name="stok" value="<?= $brg->stok ?>">
 					<h3><?= $brg->nama_brg ?></h3>
 					<h2>Rp <?= $brg->harga_brg ?></h2>
 					<ul class="list">
-						<li><a class="active" href="#"><span>Category</span> : <?= $brg->kategori_brg ?></a></li>
-						<li><a href="#"><span>Stok</span> : <?= $brg->stok ?></a></li>
-						<li><a href="#"><span>Availibility</span> : <?php
-							if ($brg->id_status = 1) {
-								echo "<div class='btn btn-success'>Ready</div>";
-							} else {
-								echo "<div class='btn gray-btn'>Habis</div>";
-							}
-							
-						?></a></li>
+						<li>
+							<a class="active" href="#">
+								<span>Category</span> : 
+								<?= $brg->kategori_brg ?>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span>Stok</span> : 
+								<?= $brg->stok ?>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span>Availibility</span> :
+								<?php
+									if ($brg->id_status = 1) {
+										echo "<div class='btn btn-success'>Ready</div>";
+									} else {
+										echo "<div class='btn gray-btn'>Habis</div>";
+									}
+									
+								?>
+							</a>
+						</li>
 					</ul>
 					<p><?= $brg->deskripsi ?></p>
 					<div class="product_count">
 						<label for="qty">Quantity:</label>
-						<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+						<input type="text" name="jumlah_pesanan" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
 						 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
 						 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 					</div>
-					<div class="card_area d-flex align-items-center">
-						<a class="primary-btn" href="#">Add to Cart</a>
+					<div class="card_area d-flex align-items-center mt-3">
+						<button class="primary-btn" type="submit">Add to Cart</a>
+				</form>
 				</div>
 			</div>
 		</div>

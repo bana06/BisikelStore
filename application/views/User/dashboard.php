@@ -187,11 +187,11 @@
 								<h6>Rp <?= $q->harga_brg ?></h6>
 								<!-- <h6 class="l-through">$210.00</h6> -->
 							</div>
-							<div class="prd-bottom">
+							<div class="prd-bottom ">
 
 								<a href="<?= site_url('User/Produk/detail/').$q->id_brg ?>" class="social-info">
 									<span class="ti-bag"></span>
-									<p class="hover-text">add to bag</p>
+									<p class="hover-text" style="font-size: 10px">add to cart</p>
 								</a>
 								<!-- <a href="" class="social-info">
 									<span class="lnr lnr-heart"></span>

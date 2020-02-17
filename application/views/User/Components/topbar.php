@@ -19,10 +19,10 @@
 							 aria-expanded="false">Shop</a>
 							<ul class="dropdown-menu">
 								<li class="nav-item"><a class="nav-link" href="<?= site_url('User/Category') ?>">Shop Category</a></li>
-								<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-								<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+								<!-- <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li> -->
+								<!-- <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li> -->
 								<li class="nav-item"><a class="nav-link" href="<?= site_url('User/Cart') ?>">Shopping Cart</a></li>
-								<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+								<!-- <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li> -->
 							</ul>
 						</li>
 					
@@ -32,8 +32,19 @@
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 							 aria-expanded="false"><span class="ti-user"></span></a>
 							<ul class="dropdown-menu ">
-								<li class="nav-item"><a class="nav-link" href="<?= site_url('Auth/login') ?>">Login</a></li>
-								<li class="nav-item"><a class="nav-link" href="<?= site_url('Auth/register') ?>">Register</a></li>
+								<?php
+									if ($this->session->userdata('email') != NULL) { 
+								?>
+									<li class="nav-item"><a class="nav-link" href="#"><?= $this->session->userdata('fullname'); ?></a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('Auth/logout') ?>">Logout</a></li>		
+								<?php 
+									} else {
+								?>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('Auth/login') ?>">Login</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('Auth/register') ?>">Register</a></li>
+								<?php
+									}
+								?>
 							</ul>
 						</li>
 					</ul>
