@@ -47,6 +47,18 @@ class Cart extends CI_Controller {
 	    die;
 	}
 
+	//Delete one item
+	public function delete( $id = NULL )
+	{
+		$datas = array(
+				'id_cart' => $id
+				
+			);
+		$this->all->delete('tbl_cart',$datas);
+		$data['cart'] = $this->um->getWithJoin()->result();
+		$this->lo->pageUser('cart', $data);
+	}
+
 }
 
 /* End of file Cart.php */

@@ -64,7 +64,7 @@
                                 <h5>Rp <?= $q->total ?></h5>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-danger">&times</a>
+                                <a  href="<?= base_url('User/Cart/delete/').$q->id_cart; ?>" class="btn btn-danger">&times</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
