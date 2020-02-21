@@ -13,7 +13,24 @@ class Category extends CI_Controller {
 	// List all your items
 	public function index( $offset = 0 )
 	{
-		$this->lo->pageUser('category');
+		$id_user = $this->session->userdata('id_user');
+		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+
+		$data['brg'] = $this->um->getBarangByCategory()->result();
+		$data['getCategory'] = $this->all->mengambil('tbl_kategori_brg')->result();
+
+		$this->lo->pageUser('category', $data);
+	}
+
+	public function getProdukByCategori($id)
+	{
+	    $id_user = $this->session->userdata('id_user');
+		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+
+		$data['getCategory'] = $this->all->mengambil('tbl_kategori_brg')->result();
+		$data['brg'] = $this->um->getBarangByCategory($id)->result();
+
+		$this->lo->pageUser('category', $data);
 	}
 
 	// Add a new item
