@@ -60,6 +60,72 @@ class Home extends CI_Controller {
 		
 		$this->lo->page('profile', $data);
 	}
+	// tampilan edit myprofile
+	public function edit_index($id_user = null)
+	{
+		$data['tajuk']         = 'BS Admin - Edit myprofile';
+		$data['user']          = $this->all->mengambil('tbl_user', ['id_user'=> $this->session->userdata('id_user')] )->row();
+		$data['fullname']      = $data['user']->fullname;
+		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
+		// $data['brand']         = $this->all->mengambil('tbl_brand')->result();
+		// $data['kategori']      = $this->all->mengambil('tbl_kategori_brg')->result();
+		//get barang utk diubah
+		 // $data['brg']           = $this->brg->getWithJoin($id_user)->row();
+		 $data['brg']           = $this->all->mengambil('tbl_user')->row();
+		
+		$this->lo->page('ubah_myprofile', $data);
+	}
+
+	public function edit_myprofile()
+	{
+		
+	    $id_user = $this->input->post('id_user');
+
+	    $config['upload_path']          = './assets/img/profile/';
+	    $config['allowed_types']        = 'gif|jpg|png|jpeg';
+	    $config['max_size']             = 0;
+	    $config['max_width']            = 0;
+	    $config['max_height']           = 0;
+	    $config['overwrite']           = TRUE;
+	    $this->load->library('upload', $config);
+	    if (!$this->upload->do_upload('photo_user')){
+            $data = array(
+				'fullname'        => $this->input->post('fullname'),
+				'email'       => $this->input->post('email'),
+				'no_hp'            => $this->input->post('no_hp'),
+				'jk'        => $this->input->post('jk'),
+				'tgl_lahir' => $this->input->post('tgl_lahir'),
+				// 'profile'       => $this->input->post('profile'),
+				// 'id_status'       => 1,
+            );
+	        $query = $this->all->update($this->table, ['id_user'=>$id_user], $data);
+	        if($query){
+	            echo 'berhasil di upload';
+	            redirect(site_url('Owner/Home/myprofile'));
+	        }else{
+	            echo 'gagal upload';
+	        }
+	    }else{
+	        $_data = array('upload_data' => $this->upload->data());
+	         $data = array(
+				'fullname'        => $this->input->post('fullname'),
+				'email'       => $this->input->post('email'),
+				'no_hp'            => $this->input->post('no_hp'),
+				'jk'        => $this->input->post('jk'),
+				'tgl_lahir' => $this->input->post('tgl_lahir'),
+				// 'profile'       => $this->input->post('profile'),
+				// 'id_status'       => 1,
+				'photo_user'       => $_data['upload_data']['file_name']
+	            );
+	        $query = $this->all->update($this->table, ['id_user'=>$id_user], $data);
+	        if($query){
+	            echo 'berhasil di upload';
+	            redirect(site_url('Owner/Home/myprofile'));
+	        }else{
+	            echo 'gagal upload';
+	        }
+	    }
+	}
 
 	public function reset_password()
 	{
