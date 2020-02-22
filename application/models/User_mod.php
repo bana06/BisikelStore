@@ -8,12 +8,13 @@ class User_mod extends CI_Model {
 	    $this->db->join('tbl_brg tb', 'tb.id_brg = tc.id_brg', 'left');
 	}
 
-	public function GetWithJoin()
+	public function GetWithJoin($id_user)
 	{
 	    $this->db->select('tc.*');
 	    $this->db->select('tb.*');
 	    $this->db->from('tbl_cart tc');
 	    $this->relasinya();
+	    $this->db->where('id_user', $id_user);
 
 	    return $this->db->get();
 	}
@@ -28,6 +29,17 @@ class User_mod extends CI_Model {
 	    $this->db->join('tbl_kategori_brg tkb', 'tkb.id_kategori_brg = tb.id_kategori_brg', 'left');
 	    $this->db->where('id_brg', $id_brg);
 
+	    return $this->db->get();
+	}
+
+	public function getBarangByCategory($category = NULL)
+	{
+	    $this->db->select('*');
+	    $this->db->from('tbl_brg');
+	    if ($category != NULL) {
+		    $this->db->where('id_kategori_brg', $category);
+	    }
+	    
 	    return $this->db->get();
 	}
 

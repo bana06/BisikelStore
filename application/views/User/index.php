@@ -19,18 +19,18 @@
 	<footer class="footer-area section_gap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
+				<div class="col-lg-6  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
 						<h6>About Us</h6>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-							magna aliqua.
+							Ini adalah Website yang dibangun oleh 2 programmer junior dari SMKN 3 Banjar,
+							yaitu Sabana Nur Rizki Hermawan dan Ari Aryansyah. Website ini dibangun dengan tujuan memenuhi tugas dari seorang Guru IT.
 						</p>
 					</div>
 				</div>
-				<div class="col-lg-4  col-md-6 col-sm-6">
+				<div class="col-lg-1  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
+						<!-- <h6>Newsletter</h6>
 						<p>Stay update with our latest</p>
 						<div class="" id="mc_embed_signup">
 
@@ -47,15 +47,15 @@
 									<div style="position: absolute; left: -5000px;">
 										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
 									</div>
-
+ -->
 									<!-- <div class="col-lg-4 col-md-4">
 												<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
 											</div>  -->
-								</div>
+								<!-- </div>
 								<div class="info"></div>
 							</form>
 						</div>
-					</div>
+-->					</div>
 				</div>
 				<div class="col-lg-3  col-md-6 col-sm-6">
 					<div class="single-footer-widget mail-chimp">

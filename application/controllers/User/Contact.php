@@ -13,8 +13,10 @@ class Contact extends CI_Controller {
 	// List all your items
 	public function index( $offset = 0 )
 	{
+		$id_user = $this->session->userdata('id_user');
+		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 
-		$this->lo->pageUser('contact');
+		$this->lo->pageUser('contact', $data);
 	}
 
 	// Add a new item

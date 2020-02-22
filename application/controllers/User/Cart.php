@@ -5,7 +5,11 @@ class Cart extends CI_Controller {
 
 	public function index()
 	{
-		$data['cart'] = $this->um->getWithJoin()->result();
+		$id_user = $this->session->userdata('id_user');
+		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+
+
+		$data['cart'] = $this->um->getWithJoin($id_user)->result();
 		$this->lo->pageUser('cart', $data);
 	}
 
@@ -43,8 +47,8 @@ class Cart extends CI_Controller {
 			redirect($_SERVER['HTTP_REFERER'],'refresh');
 		}
 
-	    var_dump($data);
-	    die;
+	    // var_dump($data);
+	    // die;
 	}
 
 	//Delete one item
@@ -55,7 +59,10 @@ class Cart extends CI_Controller {
 				
 			);
 		$this->all->delete('tbl_cart',$datas);
-		$data['cart'] = $this->um->getWithJoin()->result();
+
+		$id_user = $this->session->userdata('id_user');
+		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['cart'] = $this->um->getWithJoin($id_user)->result();
 		$this->lo->pageUser('cart', $data);
 	}
 

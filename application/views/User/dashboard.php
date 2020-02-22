@@ -10,10 +10,10 @@
 							<div class="banner-content">
 								<h1>Baru... Sepeda Santacruz!</h1>
 								<p>Telah Hadir! sepeda Gunung merek Santacruz di Indonesia. dengan High Spec, full suspensi, melaju seperti Rubah Gunung, Nyaman dikendarain dimanapun...</p>
-								<div class="add-bag d-flex align-items-center">
+								<!-- <div class="add-bag d-flex align-items-center">
 									<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
 									<span class="add-text text-uppercase">Angkut Om</span>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -23,15 +23,15 @@
 						</div>
 					</div>
 					<!-- single-slide -->
-					<div class="row single-slide">
-						<div class="col-lg-5">
+					<div class="row single-slide align-items-center d-flex">
+						<div class="col-lg-5 col-md-6">
 							<div class="banner-content">
 								<h1>Baru... Sepeda Santacruz!</h1>
 								<p>Telah Hadir! sepeda Gunung merek Santacruz di Indonesia. dengan High Spec, full suspensi, melaju seperti Rubah Gunung, Nyaman dikendarain dimanapun...</p>
-								<div class="add-bag d-flex align-items-center">
+								<!-- <div class="add-bag d-flex align-items-center">
 									<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
 									<span class="add-text text-uppercase">Angkut Om</span>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -40,6 +40,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -188,11 +189,20 @@
 								<!-- <h6 class="l-through">$210.00</h6> -->
 							</div>
 							<div class="prd-bottom ">
-
-								<a href="<?= site_url('User/Produk/detail/').$q->id_brg ?>" class="social-info">
-									<span class="ti-bag"></span>
-									<p class="hover-text" style="font-size: 10px">add to cart</p>
-								</a>
+								<?php
+									if ($this->session->userdata('fullname') != NULL) {
+										echo '<a href="'.site_url('User/Produk/detail/').$q->id_brg.'" class="social-info">
+											<span class="ti-bag"></span>
+											<p class="hover-text" style="font-size: 10px">add to cart</p>
+										</a>';
+									} else {
+										echo '<a href="#" class="social-info">
+											<span class="ti-bag"></span>
+											<p class="hover-text" style="font-size: 10px">add to cart</p>
+										</a>';
+									}
+									
+								?>
 								<!-- <a href="" class="social-info">
 									<span class="lnr lnr-heart"></span>
 									<p class="hover-text">Wishlist</p>
