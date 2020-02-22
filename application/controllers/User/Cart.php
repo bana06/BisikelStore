@@ -67,7 +67,7 @@ class Cart extends CI_Controller {
 		redirect('User/Cart','refresh');
 	}
 
-	public function checkout()
+	public function checkout($id_brg = NULL)
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
@@ -75,12 +75,60 @@ class Cart extends CI_Controller {
 			'id_user' => $id_user,
 			'is_primary' => 1
 		])->row();
+		$data['id_brg'] = $id_brg;
 
+		// $id_order = $this->um->get_kode_order();
 
-		$data['cart'] = $this->um->getWithJoin($id_user)->result();
+			if ($id_brg != NULL) {
+				$cartRow = $this->um->getWithJoin($id_user, $id_brg)->row();
+				$data['cart'] = $cartRow;
+				$data['total'] = $cartRow->harga_brg * $cartRow->jumlah_pesanan;
+
+			} else {
+				$q = $this->um->getTotal($id_user)->result();
+				foreach ($q as $key) {
+					$data['total'] = $key->total;
+
+				}
+
+				$getCartRow = $this->um->getWithJoin($id_user, $id_brg)->row();
+				$data['cartRow'] = $getCartRow;
+
+				$totalItem = $this->um->getWithJoin($id_user)->num_rows();
+				$getCart = $this->um->getWithJoin($id_user)->result();
+				$data['cart'] = $getCart;
+			}
+		
 		$this->lo->pageUser('checkout', $data);
 	}
 
+	public function UpdateCart($id_brg)
+	{
+		$id_user = $this->session->userdata('id_user');
+		$cart = $this->um->getWithJoin($id_user, $id_brg)->row();
+
+		$jumlah_pesanan = $this->input->post('jumlah_pesanan');
+
+		$harga_brg = $cart->harga_brg;
+		$total          = $jumlah_pesanan * $harga_brg;
+
+	    // var_dump($total);
+	    // die;
+	    if ($jumlah_pesanan > 0) {
+	    	$data = [
+				'jumlah_pesanan' => $jumlah_pesanan,
+				'total'          => $total,
+		    ];
+		    
+		    $this->all->update('tbl_cart', ['id_brg'=>$id_brg], $data);
+
+			redirect('User/Cart','refresh');
+	    } else {
+	    	echo "<script>alert('Qty tidak boleh NOL. jika ingin menghapus item tekan tombol Hapus!')</script>";
+			redirect('User/Cart','refresh');
+	    }
+
+	}
 }
 
 /* End of file Cart.php */

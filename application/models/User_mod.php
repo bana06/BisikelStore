@@ -8,7 +8,7 @@ class User_mod extends CI_Model {
 	    $this->db->join('tbl_brg tb', 'tb.id_brg = tc.id_brg', 'left');
 	}
 
-	public function GetWithJoin($id_user)
+	public function GetWithJoin($id_user, $id_brg = NULL)
 	{
 		$this->db->order_by('tc.id_cart', 'desc');
 	    $this->db->select('tc.*');
@@ -16,6 +16,9 @@ class User_mod extends CI_Model {
 	    $this->db->from('tbl_cart tc');
 	    $this->relasinya();
 	    $this->db->where('id_user', $id_user);
+	    if ($id_brg != NULL) {
+		    $this->db->where('tb.id_brg', $id_brg);
+	    }
 
 	    return $this->db->get();
 	}
@@ -52,6 +55,31 @@ class User_mod extends CI_Model {
 	    }
 	    
 	    return $this->db->get();
+	}
+
+	public function InsertLastId($table, $data)
+	{
+		$this->db->insert($table, $data);
+
+		return $this->db->insert_id();
+	}
+
+	public function get_kode_order() {
+		$tahun = date("Y");
+		$kode = 'BRG';
+		$query = $this->db->query("SELECT MAX(id_order) as max_id FROM tbl_order"); 
+		$row = $query->row_array();
+		$max_id = $row['max_id']; 
+		$max_id1 =(int) substr($max_id,9,5);
+		$id_order = $max_id1 +1;
+		$maxid_order = $kode.'-'.$tahun.'-'.sprintf("%04s",$id_order);
+
+		return $maxid_order;
+	}
+
+	public function insert_batch($table, $data)
+	{
+	    return $this->db->insert_batch($table, $data);
 	}
 
 }

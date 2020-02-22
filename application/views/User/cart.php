@@ -22,19 +22,21 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col" width="20px">NO</th>
-                            <th scope="col">PRODUK</th>
-                            <th scope="col" width="150px">HARGA</th>
-                            <th scope="col" width="120px">QTY</th>
-                            <th scope="col" width="150px">SUBTOTAL</th>
-                            <th scope="col" width="150px">AKSI</th>
+                            <th scope="col" width="20px" class="text-center">NO</th>
+                            <th scope="col" class="text-center">PRODUK</th>
+                            <th scope="col" width="150px" class="text-center">HARGA</th>
+                            <th scope="col" width="120px" class="text-center">QTY</th>
+                            <th scope="col" width="150px" class="text-center">SUBTOTAL</th>
+                            <th scope="col" width="150px" class="text-center">AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             $no = 1;
                             foreach ($cart as $q) :
+
                         ?>
+                        <form action="<?= site_url('User/Cart/UpdateCart/').$q->id_brg ?>" method="POST">
                         <tr>
                             <td><?= $no++ ?></td>
                             <td>
@@ -52,26 +54,24 @@
                             </td>
                             <td>
                                 <div class="product_count">
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="<?= $q->jumlah_pesanan ?>" title="Quantity:"
-                                        class="input-text qty">
-                                    <!-- <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                        class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                        class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button> -->
+                                    <!-- <label for="qty">Quantity:</label> -->
+                                    <input type="number" name="jumlah_pesanan" id="sst" maxlength="12" value="<?= $q->jumlah_pesanan ?>" title="Quantity:" class="input-text form-control">
                                 </div>
                             </td>
                             <td>
                                 <h5>Rp<?= $q->total ?>,00</h5>
                             </td>
                             <td>
-                                <a class="btn btn-primary mb-1 btn-block" href="#">
+                                <a class="btn btn-success mb-1 btn-block" href="<?= site_url('User/Cart/Checkout/').$q->id_brg ?>">
                                     <em class="fa fa-check"></em> Checkout
                                 </a>
+                                <button class="btn btn-info btn-block" type="submit">Update Cart</button>
                                 <a  href="<?= base_url('User/Cart/delete/').$q->id_cart; ?>" class="btn btn-danger btn-block">
                                     <em class="fa fa-trash"></em> Hapus
                                 </a>
                             </td>
                         </tr>
+                        </form>
                         <?php endforeach; ?>
                         <tr>
                             <td colspan="2">
@@ -86,11 +86,8 @@
                         </tr>
                         <tr class="bottom_button">
                             <td colspan="6">
-                                <a class="btn btn-primary click-btn float-right" href="<?= site_url('User/Cart/Checkout') ?>">
+                                <a class="btn btn-success click-btn float-right" href="<?= site_url('User/Cart/Checkout') ?>">
                                     <em class="fa fa-check"></em> Checkout
-                                </a>
-                                <a class="gray_btn float-right mr-3" href="#">
-                                    Update Cart
                                 </a>
                             </td>
                         </tr>

@@ -73,7 +73,7 @@
                     <a class="small" href="<?= site_url('Auth/forgotPassword') ?>">Lupa Kata Sandi?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="<?= site_url('Auth') ?>">Sudah punya Akun? Masuk!</a>
+                    <a class="small" href="<?= site_url('_login') ?>">Sudah punya Akun? Masuk!</a>
                   </div>
                 </div>
               </div>
