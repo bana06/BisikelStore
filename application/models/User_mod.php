@@ -10,6 +10,7 @@ class User_mod extends CI_Model {
 
 	public function GetWithJoin($id_user)
 	{
+		$this->db->order_by('tc.id_cart', 'desc');
 	    $this->db->select('tc.*');
 	    $this->db->select('tb.*');
 	    $this->db->from('tbl_cart tc');
@@ -17,6 +18,15 @@ class User_mod extends CI_Model {
 	    $this->db->where('id_user', $id_user);
 
 	    return $this->db->get();
+	}
+
+	public function getTotal($id_user)
+	{
+	    $this->db->select_sum('total');
+	    $this->db->from('tbl_cart');
+	    $this->db->where('id_user', $id_user);
+	
+		return $this->db->get();
 	}
 
 	public function getDetailProduk($id_brg)
@@ -34,6 +44,7 @@ class User_mod extends CI_Model {
 
 	public function getBarangByCategory($category = NULL)
 	{
+		$this->db->order_by('id_brg', 'desc');
 	    $this->db->select('*');
 	    $this->db->from('tbl_brg');
 	    if ($category != NULL) {

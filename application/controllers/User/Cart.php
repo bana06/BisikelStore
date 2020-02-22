@@ -8,6 +8,10 @@ class Cart extends CI_Controller {
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 
+		$q = $this->um->getTotal($id_user)->result();
+		foreach ($q as $key) {
+			$data['total'] = $key->total; 
+		}
 
 		$data['cart'] = $this->um->getWithJoin($id_user)->result();
 		$this->lo->pageUser('cart', $data);
@@ -60,10 +64,21 @@ class Cart extends CI_Controller {
 			);
 		$this->all->delete('tbl_cart',$datas);
 
+		redirect('User/Cart','refresh');
+	}
+
+	public function checkout()
+	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getAlamat'] = $this->all->mengambil('tbl_alamat', [
+			'id_user' => $id_user,
+			'is_primary' => 1
+		])->row();
+
+
 		$data['cart'] = $this->um->getWithJoin($id_user)->result();
-		$this->lo->pageUser('cart', $data);
+		$this->lo->pageUser('checkout', $data);
 	}
 
 }

@@ -22,12 +22,12 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Produk</th>
-                            <th scope="col">harga</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col" width="20px">NO</th>
+                            <th scope="col">PRODUK</th>
+                            <th scope="col" width="150px">HARGA</th>
+                            <th scope="col" width="120px">QTY</th>
+                            <th scope="col" width="150px">SUBTOTAL</th>
+                            <th scope="col" width="150px">AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@
                                 </div>
                             </td>
                             <td>
-                                <h5>Rp <?= $q->harga_brg ?></h5>
+                                <h5>Rp<?= $q->harga_brg ?>,00</h5>
                             </td>
                             <td>
                                 <div class="product_count">
@@ -61,27 +61,47 @@
                                 </div>
                             </td>
                             <td>
-                                <h5>Rp <?= $q->total ?></h5>
+                                <h5>Rp<?= $q->total ?>,00</h5>
                             </td>
                             <td>
-                                <a  href="<?= base_url('User/Cart/delete/').$q->id_cart; ?>" class="btn btn-danger">&times</a>
+                                <a class="btn btn-primary mb-1 btn-block" href="#">
+                                    <em class="fa fa-check"></em> Checkout
+                                </a>
+                                <a  href="<?= base_url('User/Cart/delete/').$q->id_cart; ?>" class="btn btn-danger btn-block">
+                                    <em class="fa fa-trash"></em> Hapus
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="2">
+                                <h4 class="text-muted">TOTAL ITEM</h4>
+                            </td>
+                            <td colspan="2">
+                                <h4 class="text-center"><?= $countCart ?></h4>
+                            </td>
+                            <td colspan="2">
+                                <h3 class="text-center">Rp<?= $total ?>,00</h3>
+                            </td>
+                        </tr>
+                        <tr class="bottom_button">
+                            <td colspan="6">
+                                <a class="btn btn-primary click-btn float-right" href="<?= site_url('User/Cart/Checkout') ?>">
+                                    <em class="fa fa-check"></em> Checkout
+                                </a>
+                                <a class="gray_btn float-right mr-3" href="#">
+                                    Update Cart
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
                                 <p class="float-right">
                                 </p>
                                 <p class="float-right mr-3">
                                     *Tombol Update Cart untuk mengganti jumlah barang yang dipesan. 
                                     Tombol Checkout untuk melanjutkan step pembayaran.
                                 </p>
-                            </td>
-                        </tr>
-                        <tr class="bottom_button">
-                            <td colspan="5">
-                                <a class="btn btn-primary click-btn float-right" href="#">Checkout</a>
-                                <a class="gray_btn float-right mr-3" href="#">Update Cart</a>
                             </td>
                         </tr>
                     </tbody>
