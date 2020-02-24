@@ -77,21 +77,17 @@ class Transaksi extends CI_Controller {
 			$q2 = $this->all->menambah('tbl_detail_order', $dataDetailOrder);
 
 			//hapus gambar
-		    $get_data = $this->all->mengambil('tbl_cart', ['id_brg'=>$id_brg])->row();
 			$dropDataCart = $this->all->delete('tbl_cart', [
 				'id_brg'=>$id_brg,
 				'id_user'=>$id_user,
 			]);
-
-		    if ($dropDataCart) {
-		    	unlink('assets/img/barang/'.$get_data->photo_brg);
-		    }
 
 		} else {
 			foreach ($q as $key) {
 				$data['total'] = $key->total;
 			}
 			$getCart = $this->um->getWithJoin($id_user)->result();
+			$getTotalItem = $this->um->getSumJumlahPesanan($id_user)->row();
 			$data['cart'] = $getCart;
 
 			$dataOrder = [
@@ -99,7 +95,7 @@ class Transaksi extends CI_Controller {
 				'id_user'          => $id_user,
 				'id_alamat'        => $data['getAlamat']->id_alamat,
 				'tgl'              => date("Y-m-d"),
-				'total_item'       => $getCart->jumlah_pesanan,
+				'total_item'       => $getTotalItem->jumlah_pesanan,
 				'total_bayar'      => $data['total'],
 				'status_transaksi' => 1
 			];
@@ -107,6 +103,9 @@ class Transaksi extends CI_Controller {
 			$q = $this->um->InsertLastId('tbl_order', $dataOrder);
 
 			foreach ($getCart as $gc) {
+				
+			// var_dump($dataOrder);
+			// die;
 
 				$dataDetailOrder = [];
 				$index           = 0;
@@ -127,16 +126,9 @@ class Transaksi extends CI_Controller {
 			}
 
 			//hapus gambar
-		    $get_data = $this->all->mengambil('tbl_cart', ['id_brg'=>$id_brg])->result();
 			$dropDataCart = $this->all->delete('tbl_cart', [
 				'id_user'=>$id_user,
 			]);
-
-		    foreach ($get_data as $gd) {
-		    	if ($dropDataCart) {
-			    	unlink('assets/img/barang/'.$gd->photo_brg);
-			    }
-		    }
 
 		}
 		redirect('User/Transaksi/getView2/'.$id_order,'refresh');

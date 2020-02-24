@@ -23,6 +23,15 @@ class User_mod extends CI_Model {
 	    return $this->db->get();
 	}
 
+	public function getSumJumlahPesanan($id_user)
+	{
+	    $this->db->select_sum('jumlah_pesanan');
+	    $this->db->from('tbl_cart');
+	    $this->db->where('id_user', $id_user);
+	
+		return $this->db->get();
+	}
+
 	public function getTotal($id_user)
 	{
 	    $this->db->select_sum('total');
