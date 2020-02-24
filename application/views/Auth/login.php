@@ -50,8 +50,11 @@
                       <?= form_error('password', '<div class="text-danger">', '</div>') ?>
                     </div>
                     <div class="form-group">
-                      <input type="radio" name="admin">Admin 1
-                      <input type="radio" name="admin">Admin 2
+                      <input type="radio" name="id_user_asal" value="1"> Admin 1 <br> 
+                      <input type="radio" name="id_user_asal" value="2"> Admin 2 <br>
+                      <input type="radio" name="id_user_asal" value="4"> Admin 3
+                      <br><br>
+                      <label for="">* untuk Akun User silahkan lewati pilihan Radio Buttonnya.</label>
                     </div>
                     <button type="submit" class="btn btn-warning btn-user btn-block">
                       Masuk

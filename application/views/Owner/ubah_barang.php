@@ -7,6 +7,7 @@
       <div class="card-body">
       <?= form_open_multipart('Owner/Barang/edit_brg') ?>
         <div class="form-group">
+          <input type="hidden" name="id_brg" value="<?= $brg->id_brg ?>" class="form-control">
           <div class="row">
             <div class="col-md-9">
               <label for="">Nama Barang</label>

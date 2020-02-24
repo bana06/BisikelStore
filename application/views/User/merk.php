@@ -21,10 +21,10 @@
 					<div class="head">Browse Categories</div>
 					<ul class="main-categories">
 					<?php
-						foreach ($getCategory as $q) :
+						foreach ($getBrand as $q) :
 					?>
 						<li class="main-nav-list">
-							<a href="<?= site_url('User/Merk/getProdukByCategori/').$q->id_brand ?>" aria-expanded="false" aria-controls="fruitsVegetable" class=" <?= ($this->uri->segment(4) == $q->id_brand)? "text-warning" : "" ?>">
+							<a href="<?= site_url('User/Merk/getProdukByMerk/').$q->id_brand ?>" aria-expanded="false" aria-controls="fruitsVegetable" class=" <?= ($this->uri->segment(4) == $q->id_brand)? "text-warning" : "" ?>">
 								<span class="lnr lnr-arrow-right"></span><?= $q->brand ?>
 								<!-- <span class="number">(53)</span> -->
 							</a>

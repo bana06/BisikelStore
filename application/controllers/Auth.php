@@ -37,6 +37,7 @@ class Auth extends CI_Controller {
 	{
 	    $email    = $this->input->post('email');
 		$password = $this->input->post('password');
+		$id_user_asal = $this->input->post('id_user_asal');
 
 		$user = $this->all->mengambil($this->table, ['email'=>$email] )->row();
 
@@ -55,7 +56,35 @@ class Auth extends CI_Controller {
 				$this->session->set_userdata($data);
 
 				if ($user->id_level == 1) {
-					redirect('Owner/Home','refresh');
+					if ('1' == $id_user_asal) {
+						if ($user->email == 'admin@gmail.com') {
+							$this->session->set_flashdata('message', '<div class="alert alert-success">Selamat datang Admin!</div>');
+							redirect('Owner/Home','refresh');
+						}else {
+							$this->session->set_flashdata('message', '<div class="alert alert-danger">Pilih Admin sesuai dengan yang ditetapkan!</div>');
+							redirect('Auth/login','refresh');
+						}
+					}if ('2' == $id_user_asal) {
+							$this->session->set_flashdata('message', '<div class="alert alert-success">Selamat datang Admin2!</div>');
+						if ($user->email == 'admin2@gmail.com') {
+							redirect('Owner/Home','refresh');
+						}else {
+							$this->session->set_flashdata('message', '<div class="alert alert-danger">Pilih Admin sesuai dengan yang ditetapkan!</div>');
+							redirect('Auth/login','refresh');
+						}
+					}if ('4' == $id_user_asal) {
+						if ($user->email == 'sabana@gmail.com') {
+							$this->session->set_flashdata('message', '<div class="alert alert-success">Selamat datang Sabana Nur Rizki Hermawan!</div>');
+							redirect('Owner/Home','refresh');
+						}else {
+							$this->session->set_flashdata('message', '<div class="alert alert-danger">Pilih Admin sesuai dengan yang ditetapkan!</div>');
+							redirect('Auth/login','refresh');
+						}
+					}else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger">Pilih Admin sesuai dengan yang ditetapkan!</div>');
+						redirect('Auth/login','refresh');
+					}
+					
 				} else {
 					redirect('User/Home','refresh');
 				}

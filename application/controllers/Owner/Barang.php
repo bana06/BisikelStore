@@ -187,9 +187,10 @@ class Barang extends CI_Controller {
 				'id_kategori_brg' => $this->input->post('id_kategori_brg'),
 				'deskripsi'       => $this->input->post('deskripsi'),
 				'id_status'       => 1,
-				'photo_brg'       => $_data['upload_data']['file_name']
 	            );
 	        $query = $this->all->update($this->table, ['id_brg'=>$id_brg], $data);
+            // var_dump($query);
+            // die;
 	        if($query){
 	            echo 'berhasil di upload';
 	            redirect(site_url('Owner/Barang'));

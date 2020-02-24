@@ -20,10 +20,10 @@
 							 aria-expanded="false">MERK</a>
 							<ul class="dropdown-menu ">
 								<?php
-									foreach ($getCategory as $q) :
+									foreach ($getBrand as $q) :
 								?>
 									<li class="nav-item">
-										<a class="nav-link" href="<?= site_url('User/Merk/getProdukByCategori/').$q->id_brand ?>">
+										<a class="nav-link" href="<?= site_url('User/Merk/getProdukByMerk/').$q->id_brand ?>">
 										<?= $q->brand; ?>
 										</a>
 									</li>

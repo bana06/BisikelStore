@@ -25,12 +25,12 @@ class Merk extends CI_Controller {
 		$this->lo->pageUser('merk', $data);
 	}
 
-	public function getProdukByCategori($id)
+	public function getProdukByMerk($id)
 	{
 	    $id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 
-		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+		$data['getBrand'] = $this->all->mengambil('tbl_brand')->result();
 		$data['brg'] = $this->um->getbrandBymerk($id)->result();
 
 		$this->lo->pageUser('merk', $data);
