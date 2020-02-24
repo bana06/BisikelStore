@@ -49,12 +49,10 @@
                       <input name="password" type="password" class="form-control form-control-user" id="password" placeholder="Masukkan Password... seperti : aOXeAeonFluX9092">
                       <?= form_error('password', '<div class="text-danger">', '</div>') ?>
                     </div>
-                    <!-- <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Ingatkan saya</label>
-                      </div>
-                    </div> -->
+                    <div class="form-group">
+                      <input type="radio" name="admin">Admin 1
+                      <input type="radio" name="admin">Admin 2
+                    </div>
                     <button type="submit" class="btn btn-warning btn-user btn-block">
                       Masuk
                     </button>
