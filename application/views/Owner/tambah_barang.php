@@ -7,8 +7,16 @@
       <div class="card-body">
       <?= form_open_multipart('Owner/Barang/add_brg') ?>
         <div class="form-group">
-          <label for="">Nama Barang</label>
-          <input type="text" name="nama_brg" value="" placeholder="Masukkan nama barang disini..." class="form-control" required>
+          <div class="row">
+            <div class="col-md-9">
+              <label for="">Nama Barang</label>
+              <input type="text" name="nama_brg" value="" placeholder="Masukkan nama barang disini..." class="form-control" required>
+            </div>
+            <div class="col-md-3">
+              <label for="">Tahun Keluar</label>
+              <input type="text" name="tahun_keluar" value="" placeholder="YYYY" class="form-control" required>
+            </div>
+          </div>
         </div>
         <div class="form-group">
          <div class="row">

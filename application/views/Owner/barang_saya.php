@@ -22,7 +22,10 @@
             <th>No</th>
             <th>Photo</th>
             <th>Barang</th>
+            <th>Tahun Keluar</th>
             <th>Harga</th>
+            <th>Diskon</th>
+            <th>Harga diskonan</th>
             <th>Stok</th>
             <th>Kondisi</th>
             <th>Brand</th>
@@ -36,7 +39,10 @@
             <th>No</th>
             <th>Photo</th>
             <th>Barang</th>
+            <th>Tahun Keluar</th>
             <th>Harga</th>
+            <th>Diskon</th>
+            <th>Harga diskonan</th>
             <th>Stok</th>
             <th>Kondisi</th>
             <th>Brand</th>
@@ -56,10 +62,29 @@
               <img class="img-fluid" src="<?= site_url('assets/img/barang/').$data->photo_brg ?>" width="100px" height="100px">
             </td>
             <td><?= $data->nama_brg ?></td>
+            <td><?= $data->tahun_keluar ?></td>
             <td>
               <?php
                 if ($data->harga_brg) {
                   echo 'Rp '.$data->harga_brg;
+                } else {
+                  echo "-";
+                }
+              ?>  
+            </td>
+            <td>
+              <?php
+                if ($data->diskon) {
+                  echo $data->diskon.'%';
+                } else {
+                  echo "-";
+                }
+              ?>  
+            </td>
+            <td>
+              <?php
+                if ($data->harga_after_diskon) {
+                  echo 'Rp'.$data->harga_after_diskon;
                 } else {
                   echo "-";
                 }
@@ -96,6 +121,7 @@
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a href="<?= site_url('Owner/Barang/add_stok/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-plus " style="color:aqua;"></i> Tambah Stok</a><hr>
+                    <a href="<?= site_url('Owner/Barang/add_diskon/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-dollar-sign " style="color:gray;"></i> Tambah Diskon</a><hr>
                     <a href="<?= site_url('Owner/Barang/edit_index/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-edit " style="color:green;"></i> Edit</a><hr>
                     <a href="<?= site_url('Owner/Barang/delete_brg/').$data->id_brg ?>" class="dropdown-item"><i class="fas fa-trash" style="color:red;"></i> Hapus</a>
                   </div>

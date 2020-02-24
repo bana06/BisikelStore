@@ -43,6 +43,18 @@ class Barang extends CI_Controller {
 		$this->lo->page('tambah_barang', $data);
 	}
 
+	public function add_diskon($id_brg)
+	{
+		$data['tajuk']         = 'BS Admin - Tambah Stok Barang saya';
+		$data['user']          = $this->all->mengambil('tbl_user', ['id_user'=> $this->session->userdata('id_user')] )->row();
+		$data['fullname']      = $data['user']->fullname;
+		$data['photo_profile'] = site_url('assets/img/profile/').$data['user']->photo_user;
+		//get barang utk diubah
+		$data['brg']           = $this->all->mengambil($this->table, ['id_brg'=>$id_brg])->row();
+		
+		$this->lo->page('tambah_diskon', $data);
+	}
+
 	public function edit_index($id_brg)
 	{
 		$data['tajuk']         = 'BS Admin - Edit Barang saya';
@@ -82,6 +94,7 @@ class Barang extends CI_Controller {
 	    if (!$this->upload->do_upload('photo_brg')){
 	        $data = array(
 				'nama_brg'        => $this->input->post('nama_brg'),
+				'tahun_keluar'    => $this->input->post('tahun_keluar'),
 				'harga_brg'       => $this->input->post('harga_brg'),
 				'stok'            => $this->input->post('stok'),
 				'id_brand'        => $this->input->post('id_brand'),
@@ -100,6 +113,7 @@ class Barang extends CI_Controller {
 	        $_data = array('upload_data' => $this->upload->data());
 	        $data = array(
 				'nama_brg'        => $this->input->post('nama_brg'),
+				'tahun_keluar'    => $this->input->post('tahun_keluar'),
 				'harga_brg'       => $this->input->post('harga_brg'),
 				'stok'            => $this->input->post('stok'),
 				'id_brand'        => $this->input->post('id_brand'),
@@ -126,6 +140,26 @@ class Barang extends CI_Controller {
 
 	    $tambah = $stok+$stok_baru;
 	    $data['stok'] = $tambah;
+
+	    $this->all->update($this->table, ['id_brg'=>$id_brg], $data);
+	    redirect(site_url('Owner/Barang'),'refresh');
+
+	}
+
+	public function tambah_diskon()
+	{
+	    $id_brg = $this->input->post('id_brg');
+	    $diskon = $this->input->post('diskon');
+	    $harga_brg = $this->input->post('harga_brg');
+
+	    $harga_after_diskon = $harga_brg - ($harga_brg * $diskon / 100);
+	    // var_dump($harga_after_diskon);
+	    // die;
+
+	    $data = [
+	    	'diskon' => $diskon,
+	    	'harga_after_diskon' => $harga_after_diskon,
+	    ];
 
 	    $this->all->update($this->table, ['id_brg'=>$id_brg], $data);
 	    redirect(site_url('Owner/Barang'),'refresh');
