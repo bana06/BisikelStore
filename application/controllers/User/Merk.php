@@ -11,7 +11,7 @@ class Merk extends CI_Controller {
 	}
 
 	// List all your items
-	public function index( $offset = 0 )
+	public function index( )
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
