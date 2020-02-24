@@ -18,6 +18,8 @@ class Category extends CI_Controller {
 
 		$data['brg'] = $this->um->getBarangByCategory()->result();
 		$data['getCategory'] = $this->all->mengambil('tbl_kategori_brg')->result();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+		
 
 		$this->lo->pageUser('category', $data);
 	}
@@ -26,6 +28,7 @@ class Category extends CI_Controller {
 	{
 	    $id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
 
 		$data['getCategory'] = $this->all->mengambil('tbl_kategori_brg')->result();
 		$data['brg'] = $this->um->getBarangByCategory($id)->result();

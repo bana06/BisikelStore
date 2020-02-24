@@ -15,6 +15,8 @@ class Contact extends CI_Controller {
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+		
 
 		$this->lo->pageUser('contact', $data);
 	}

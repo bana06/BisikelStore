@@ -14,6 +14,8 @@ class Transaksi extends CI_Controller {
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+
 
 		if ($id_user != NULL) {
 			$data['transaksi'] = $this->all->mengambil('tbl_order', ['id_user'=>$id_user])->result();
@@ -32,6 +34,8 @@ class Transaksi extends CI_Controller {
 	{
 		$id_user                  = $this->session->userdata('id_user');
 		$data['countCart']        = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+
 		
 		$q                        = $this->all->mengambil('tbl_order', ['id_order'=>$id_order]
 		)->row();
@@ -47,6 +51,8 @@ class Transaksi extends CI_Controller {
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+		
 		$data['getAlamat'] = $this->all->mengambil('tbl_alamat', [
 			'id_user' => $id_user,
 			'is_primary' => 1

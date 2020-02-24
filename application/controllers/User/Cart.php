@@ -14,6 +14,8 @@ class Cart extends CI_Controller {
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+
 
 		$q = $this->um->getTotal($id_user)->result();
 		foreach ($q as $key) {
@@ -79,6 +81,7 @@ class Cart extends CI_Controller {
 		$id_user = $this->session->userdata('id_user');
 		$data['id_user'] = $id_user;
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
 		$data['getAlamat'] = $this->all->mengambil('tbl_alamat', [
 			'id_user' => $id_user,
 			'is_primary' => 1
@@ -142,6 +145,8 @@ class Cart extends CI_Controller {
 	{
 		$data['id_user'] = $id_user;
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+
 
 		$this->lo->pageUser('add_alamat', $data);
 	    

@@ -15,6 +15,8 @@ class Home extends CI_Controller {
 		$data['brg'] = $this->all->mengambil('tbl_brg')->result();
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
+		
 
 		// var_dump($data['brg']);
 		// die;
