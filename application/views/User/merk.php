@@ -24,7 +24,7 @@
 						foreach ($getCategory as $q) :
 					?>
 						<li class="main-nav-list">
-							<a href="<?= site_url('User/Category/getProdukByCategori/').$q->id_brand ?>" aria-expanded="false" aria-controls="fruitsVegetable" class=" <?= ($this->uri->segment(4) == $q->id_brand)? "text-warning" : "" ?>">
+							<a href="<?= site_url('User/Merk/getbrandBymerk/').$q->id_brand ?>" aria-expanded="false" aria-controls="fruitsVegetable" class=" <?= ($this->uri->segment(4) == $q->id_brand)? "text-warning" : "" ?>">
 								<span class="lnr lnr-arrow-right"></span><?= $q->brand ?>
 								<!-- <span class="number">(53)</span> -->
 							</a>
