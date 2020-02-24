@@ -16,7 +16,7 @@
 						<li class="nav-item <?= ($this->uri->segment(2) == 'Home')? 'active' : '' ?>"><a class="nav-link" href="<?= site_url('User/Home') ?>">Home</a></li>
 
 						<li class="nav-item submenu dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" <?= ($this->uri->segment(2) == 'controllernya')? 'active' : '' ?>
 							 aria-expanded="false">MERK</a>
 							<ul class="dropdown-menu ">
 								

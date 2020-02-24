@@ -3,11 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Contact extends CI_Controller {
 
+	//untuk cek session
 	public function __construct()
 	{
 		parent::__construct();
-		//Load Dependencies
-
+		is_logged_in();
 	}
 
 	// List all your items
