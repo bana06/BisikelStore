@@ -14,6 +14,21 @@
 				<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 					<ul class="nav navbar-nav menu_nav ml-auto">
 						<li class="nav-item <?= ($this->uri->segment(2) == 'Home')? 'active' : '' ?>"><a class="nav-link" href="<?= site_url('User/Home') ?>">Home</a></li>
+
+						<li class="nav-item submenu dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+							 aria-expanded="false">MERK</a>
+							<ul class="dropdown-menu ">
+								
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">Pacific</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">Polygon</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">United</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">Santa Cruz</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">GT</a></li>
+								
+							</ul>
+						</li>
+
 						<li class="nav-item <?= ($this->uri->segment(2) == 'Category')? 'active' : '' ?>"><a class="nav-link" href="<?= site_url('User/Category') ?>">Shop</a></li>
 						<!-- <li class="nav-item submenu dropdown"> -->
 							<!-- <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" -->
