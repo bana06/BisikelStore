@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
       <div class="card-body">
           <!-- Topbar Search -->
-        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <!--   <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
           <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Cari Brand..." aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -15,7 +15,7 @@
               </button>
             </div>
           </div>
-        </form>
+        </form> -->
         <a href="<?= site_url('Owner/Brand/add_index') ?>" class="btn btn-success float-right mb-3">Tambah Brand Baru</a>
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

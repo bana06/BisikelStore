@@ -58,7 +58,7 @@
 													<p class="hover-text" style="font-size: 10px">add to cart</p>
 												</a>';
 											} else {
-												echo '<a href="#" class="social-info">
+												echo '<a href="'.site_url('Auth/login').'" class="social-info">
 													<span class="ti-bag"></span>
 													<p class="hover-text" style="font-size: 10px">add to cart</p>
 												</a>';

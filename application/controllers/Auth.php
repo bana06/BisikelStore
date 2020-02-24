@@ -66,6 +66,7 @@ class Auth extends CI_Controller {
 			
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger">Email Anda belum terdaftar!</div>');
+			redirect('Auth/login','refresh');
 		}
 	}
 

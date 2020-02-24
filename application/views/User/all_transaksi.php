@@ -42,20 +42,20 @@
                         <tr>
                             <td><?= $no++ ?></td>
                             <td>
-                                <div class="d-flex">
-                                    <img src="<?= site_url('assets/img/barang/').$q->photo_bukti ?>" width="150px" height="150px">
+                                <div class="d-flex text-center">
+                                    <img src="<?= site_url('assets/img/bukti_pembayaran/').$q->photo_bukti ?>" width="150px" height="150px">
                                 </div>
                             </td>
                             <td>
                                 <div class="media">
-                                    <div class="media-body">
+                                    <div class="media-body text-center">
                                         <p><?= $q->tgl ?></p>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="media">
-                                    <div class="media-body">
+                                    <div class="media-body text-center">
                                         <p><?= $q->total_item ?></p>
                                     </div>
                                 </div>
@@ -63,29 +63,35 @@
                             <td>
                                 <div class="media">
                                     <div class="media-body">
-                                        <p><?= $q->total_bayar ?></p>
+                                        <p>Rp<?= $q->total_bayar ?>,00</p>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="media">
                                     <div class="media-body">
-                                        <p><?= $q->tgl ?></p>
+                                        <?php
+                                            foreach ($getAlamat as $ga) :
+                                        ?>
+                                            <p><?= $ga->alamat ?></p>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="media">
-                                    <div class="media-body">
+                                    <div class="media-body text-center">
                                         <p><?php
                                             if ($q->status_transaksi == 1) {
-                                                echo "Belum dibayar";
+                                                echo "<label class='text-white bg-danger p-3'><em class='fa fa-exclamation'></em> BELUM DIBAYAR</label>";
                                             } else if($q->status_transaksi == 2){
-                                                echo "Verifikasi Pembayaran";
+                                                echo "<label class='text-white bg-warning p-3'><em class='fa fa-check'></em> MENNUNGGU VERIFIKASI</label>";
                                             } else if($q->status_transaksi == 3){
-                                                echo "Pengemasan";
+                                                echo "<label class='text-white bg-info p-3'><em class='fa fa-archive'></em> PENGEMASAN</label>";
                                             } else if($q->status_transaksi == 4){
-                                                echo "Delivery";
+                                                echo "<label class='text-white bg-primary p-3'><em class='fa fa-truck'></em> DELIVERY</label>";
+                                            }else{
+                                                echo "<label class='text-white bg-success p-3'><em class='fa fa-check'></em> SELESAI</label>";
                                             }
                                             
                                         ?></p>
@@ -94,7 +100,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-success mb-1 btn-block" href="<?= site_url('User/Transaksi/getView2/').$q->id_order ?>">
-                                    <em class="fa fa-dollar"></em> Bayar
+                                    <em class="fa fa-eye"></em> Lihat
                                 </a>
                             </td>
                         </tr>

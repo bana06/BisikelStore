@@ -8,56 +8,29 @@ class Transaksi extends CI_Controller {
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 
-		$id_user = $this->session->userdata('id_user');
-		$data['transaksi'] = $this->all->mengambil('tbl_order')->result();
-
-		$this->lo->pageUser('all_transaksi', $data);
+		if ($id_user != NULL) {
+			$data['transaksi'] = $this->all->mengambil('tbl_order', ['id_user'=>$id_user])->result();
+			$data['getAlamat'] = $this->all->mengambil('tbl_alamat', ['id_user'=>$id_user])->result();
+			// var_dump($data['q']);
+			// var_dump($id_user);
+			// die;
+			$this->lo->pageUser('all_transaksi', $data);
+		} else {
+			redirect('Auth/login','refresh');
+		}
 	    
 	}
 
-	public function getView($id_brg = NULL)
+	public function getView2($id_order = NULL)
 	{
-		$id_user = $this->session->userdata('id_user');
-		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
-		$data['getAlamat'] = $this->all->mengambil('tbl_alamat', [
-			'id_user' => $id_user,
-			'is_primary' => 1
-		])->row();
-		$data['id_brg'] = $id_brg;
-
-		// $id_order = $this->um->get_kode_order();
-
-			if ($id_brg != NULL) {
-				$cartRow = $this->um->getWithJoin($id_user, $id_brg)->row();
-				$data['cart'] = $cartRow;
-				$data['total'] = $cartRow->harga_brg * $cartRow->jumlah_pesanan;
-
-			} else {
-				$q = $this->um->getTotal($id_user)->result();
-				foreach ($q as $key) {
-					$data['total'] = $key->total;
-
-				}
-
-				$getCartRow = $this->um->getWithJoin($id_user, $id_brg)->row();
-				$data['cartRow'] = $getCartRow;
-
-				$totalItem = $this->um->getWithJoin($id_user)->num_rows();
-				$getCart = $this->um->getWithJoin($id_user)->result();
-				$data['cart'] = $getCart;
-			}
-
-		// $data['cart'] = $this->um->getWithJoin($id_user)->result();
-		$this->lo->pageUser('transaksi', $data);
-	}
-
-		public function getView2($id_order = NULL)
-	{
-		$id_user = $this->session->userdata('id_user');
-		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+		$id_user                  = $this->session->userdata('id_user');
+		$data['countCart']        = $this->um->getWithJoin($id_user)->num_rows();
 		
-		$q = $this->all->mengambil('tbl_order', ['id_order'=>$id_order])->row();
-		$data['total'] = $q->total_bayar;
+		$q                        = $this->all->mengambil('tbl_order', ['id_order'=>$id_order]
+		)->row();
+		$data['total']            = $q->total_bayar;
+		$data['status_transaksi'] = $q->status_transaksi;
+		$data['id_order']         = $q->id_order;
 
 		// $data['cart'] = $this->um->getWithJoin($id_user)->result();
 		$this->lo->pageUser('transaksi', $data);
@@ -67,9 +40,6 @@ class Transaksi extends CI_Controller {
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
-
-		$id_user = $this->session->userdata('id_user');
-		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 		$data['getAlamat'] = $this->all->mengambil('tbl_alamat', [
 			'id_user' => $id_user,
 			'is_primary' => 1
@@ -77,7 +47,7 @@ class Transaksi extends CI_Controller {
 		$data['id_brg'] = $id_brg;
 
 		$id_order = $this->um->get_kode_order();
-		$totalItem = $this->um->getWithJoin($id_user)->num_rows();
+		// $totalItem = $this->um->getWithJoin($id_user)->num_rows();
 
 		$q = $this->um->getTotal($id_user)->result();
 
@@ -91,7 +61,7 @@ class Transaksi extends CI_Controller {
 				'id_user'          => $id_user,
 				'id_alamat'        => $data['getAlamat']->id_alamat,
 				'tgl'              => date("Y-m-d"),
-				'total_item'       => $totalItem,
+				'total_item'       => $getCart->jumlah_pesanan,
 				'total_bayar'      => $data['total'],
 				'status_transaksi' => 1
 			];
@@ -117,7 +87,7 @@ class Transaksi extends CI_Controller {
 				'id_user'          => $id_user,
 				'id_alamat'        => $data['getAlamat']->id_alamat,
 				'tgl'              => date("Y-m-d"),
-				'total_item'       => $totalItem,
+				'total_item'       => $getCart->jumlah_pesanan,
 				'total_bayar'      => $data['total'],
 				'status_transaksi' => 1
 			];
@@ -144,7 +114,55 @@ class Transaksi extends CI_Controller {
 				// die;
 			}
 		}
-		redirect('User/Transaksi/getView/'.$id_brg,'refresh');
+		redirect('User/Transaksi/getView2/'.$id_order,'refresh');
+	}
+
+	public function uploadBuktiBayar()
+	{
+	    $id_order = $this->input->post('id_order');
+	    // $photo_bukti = $this->input->post('photo_bukti');
+
+		$config['upload_path']   = './assets/img/bukti_pembayaran/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|PNG|JPG|GIF|JPEG';
+		$config['max_size']      = 0;
+		$config['max_width']     = 0;
+		$config['max_height']    = 0;
+		$config['overwrite']     = TRUE;
+		// $config['file_name']     = 'BuktiTransaksi_'.$id_order;
+
+		$this->load->library('upload', $config);
+	    if (!$this->upload->do_upload('photo_bukti')){
+            // $error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('message', '<div class="alert alert-danger">Gagal Upload Bukti Photo. Silahkan coba lagi...</div>');
+
+			redirect('User/Transaksi/getView2/'.$id_order,'refresh');
+	    }else{
+	        $_data = array('upload_data' => $this->upload->data());
+			$data  = array(
+				'status_transaksi' => 2,
+				'photo_bukti'      => $_data['upload_data']['file_name']
+            );
+
+            $this->all->update('tbl_order', ['id_order'=>$id_order], $data);
+
+			$this->session->set_flashdata('message', '<div class="alert alert-success">Berhasil Upload Bukti Photo. Silahkan cek status pembayaran disamping Total Pembayaran.</div>');
+			redirect('User/Transaksi/getView2/'.$id_order,'refresh');
+	    }
+	}
+
+	public function updateStatusTransfer($id_order)
+	{
+	    $getOrder = $this->all->mengambil('tbl_order', ['id_order'=>$id_order])->row();
+	
+		if ($getOrder->status_transaksi == 4) {
+			$data = [
+				'status_transaksi' => 5
+			];
+			$this->all->update('tbl_order', ['id_order'=>$id_order], $data);
+
+			$this->session->set_flashdata('message', '<div class="alert alert-success h2 p-3 text-center">Terimakasih sudah berbelanja di Toko Kami ^_^ Semoga Pelayanan kami memuaskan untuk Anda. <a href="'.site_url('User/Home').'">Mau Belanja Lagi? Klik disini</a></div>');
+			redirect('User/Transaksi/getView2/'.$id_order,'refresh');
+		}
 	}
 
 }

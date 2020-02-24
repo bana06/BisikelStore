@@ -70,6 +70,7 @@ class Cart extends CI_Controller {
 	public function checkout($id_brg = NULL)
 	{
 		$id_user = $this->session->userdata('id_user');
+		$data['id_user'] = $id_user;
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 		$data['getAlamat'] = $this->all->mengambil('tbl_alamat', [
 			'id_user' => $id_user,
@@ -128,6 +129,28 @@ class Cart extends CI_Controller {
 			redirect('User/Cart','refresh');
 	    }
 
+	}
+
+	public function addAlamat($id_user)
+	{
+		$data['id_user'] = $id_user;
+		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
+
+		$this->lo->pageUser('add_alamat', $data);
+	    
+	}
+
+	public function tambahAlamat($id_user)
+	{
+	    $data = [
+	    	'alamat' => $this->input->post('alamat'),
+	    	'id_user' => $id_user,
+	    	'is_primary' => 1
+	    ];
+
+	    $this->all->menambah('tbl_alamat', $data);
+
+	    redirect('User/Cart','refresh');
 	}
 }
 

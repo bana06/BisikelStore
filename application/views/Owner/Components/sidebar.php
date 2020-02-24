@@ -12,10 +12,28 @@
   <hr class="sidebar-divider my-0">
 
   <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
+  <li class="nav-item  <?= ($this->uri->segment(2) == 'Home')? 'active' : '' ?>">
     <a class="nav-link" href="<?= site_url('Owner/Home') ?>">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
+  </li>
+
+  <hr class="sidebar-divider">
+
+  <div class="sidebar-heading">
+    Transaksi
+  </div>
+
+  <li class="nav-item  <?= ($this->uri->segment(2) == 'Transaksi')? 'active' : '' ?>">
+    <a class="nav-link" href="<?= site_url('Owner/Transaksi') ?>">
+      <i class="fas fa-fw fa-dollar-sign"></i>
+      <span>Transaksi</span></a>
+  </li>
+
+  <li class="nav-item  <?= ($this->uri->segment(2) == 'RiwayatTransaksi')? 'active' : '' ?>">
+    <a class="nav-link" href="<?= site_url('Owner/RiwayatTransaksi') ?>">
+      <i class="fas fa-fw fa-check"></i>
+      <span>Riwayat Transaksi</span></a>
   </li>
 
   <!-- Divider -->
@@ -26,13 +44,13 @@
     Management
   </div>
 
-  <li class="nav-item">
+  <li class="nav-item <?= ($this->uri->segment(2) == 'Barang')? 'active' : '' ?>">
     <a class="nav-link" href="<?= site_url('Owner/Barang') ?>">
       <i class="fas fa-fw fa-boxes"></i>
       <span>Barang saya</span></a>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item <?= ($this->uri->segment(2) == 'Brand')? 'active' : '' ?>">
     <a class="nav-link" href="<?= site_url('Owner/Brand') ?>">
       <i class="fas fa-fw fa-box"></i>
       <span>Management Brand</span></a>

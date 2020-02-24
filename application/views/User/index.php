@@ -107,7 +107,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="<?= site_url('assets/User/') ?>js/jquery.magnific-popup.min.js"></script>
 	<script src="<?= site_url('assets/User/') ?>js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script> -->
 	<script src="<?= site_url('assets/User/') ?>js/gmaps.min.js"></script>
 	<script src="<?= site_url('assets/User/') ?>js/main.js"></script>
 </body>

@@ -22,12 +22,19 @@
                 <div>
                     <div class="mb-4">
                         <label class="h2">ALAMAT PENGIRIMAN</label>
-                        <a href="#" class="btn btn-info float-right">
+                        <a href="<?= site_url('User/Cart/addAlamat/').$id_user ?>" class="btn btn-info float-right">
                             <em class="fa fa-plus"></em>
                             Tambah Alamat
                         </a>
                     </div>
-                    <h4 class=""><?= $getAlamat->alamat ?></h4>
+                    <h4 class=""><?php
+                        if ($getAlamat != NULL) {
+                            echo $getAlamat->alamat;
+                        } else {
+                            echo "-";
+                        }
+                        
+                    ?></h4>
                     <br>
                 </div>
                 <hr>
@@ -139,10 +146,14 @@
                     </div>
                     <hr>
                     <?php
-                        if ($id_brg != NULL) {
-                            echo '<a href="'.site_url('User/Transaksi/insertOrder/').$id_brg.'" class="btn primary-btn float-right">Bayar dengan Transfer</a>';
+                        if ($getAlamat != NULL) {
+                            if ($id_brg != NULL) {
+                                echo '<a href="'.site_url('User/Transaksi/insertOrder/').$id_brg.'" class="btn primary-btn float-right">Bayar dengan Transfer</a>';
+                            } else {
+                                echo '<a href="'.site_url('User/Transaksi/insertOrder/').'" class="btn primary-btn float-right">Bayar dengan Transfer</a>';
+                            }
                         } else {
-                            echo '<a href="'.site_url('User/Transaksi/insertOrder/').'" class="btn primary-btn float-right">Bayar dengan Transfer</a>';
+                            echo '<label class="btn btn-secondary float-right">Maaf Anda belum boleh bayar sebelum memasukkan Alamat. Silahkan Masukkan alamat dengan cara klik tombol <i>Tambah Alamat</i></label>';
                         }
                         
                     ?>

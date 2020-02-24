@@ -28,6 +28,7 @@
 						</li> -->
 						<li class="nav-item <?= ($this->uri->segment(2) == 'Contact')? 'active' : '' ?>"><a class="nav-link" href="<?= site_url('User/Contact') ?>">Contact</a></li>
 					
+						<!-- <li class="nav-item <?= ($this->uri->segment(2) == 'Cart')? 'active' : '' ?>"><a class="nav-link" href="<?= site_url('User/Cart') ?>">Cart</a></li> -->
 						<li class="nav-item <?= ($this->uri->segment(2) == 'Transaksi')? 'active' : '' ?>"><a class="nav-link" href="<?= site_url('User/Transaksi') ?>">Transaksi</a></li>
 
 						<li class="nav-item submenu dropdown">

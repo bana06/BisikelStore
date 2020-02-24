@@ -86,9 +86,15 @@
                         </tr>
                         <tr class="bottom_button">
                             <td colspan="6">
+                            <?php
+                                if ($cart != NULL) {
+                            ?>
                                 <a class="btn btn-success click-btn float-right" href="<?= site_url('User/Cart/Checkout') ?>">
                                     <em class="fa fa-check"></em> Checkout
                                 </a>
+                            <?php
+                                }
+                            ?>
                             </td>
                         </tr>
                         <tr>

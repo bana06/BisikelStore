@@ -24,6 +24,33 @@ class Owner_brg_mod extends CI_Model {
 		return $this->db->get();
 	}
 
+	public function getTransaksiWithLike()
+	{
+		$this->db->order_by('id_order', 'desc');
+	    $this->db->like('to.status_transaksi', 1);
+	    $this->db->or_like('to.status_transaksi', 2);
+	    $this->db->or_like('to.status_transaksi', 3);
+	    $this->db->or_like('to.status_transaksi', 4);
+	    $this->db->select('to.*');
+	    $this->db->select('tu.*');
+	    $this->db->from('tbl_order to');
+	    $this->db->join('tbl_user tu', 'tu.id_user = to.id_user', 'left');
+		
+		return $this->db->get();
+	}
+
+	public function getRiwayatTransaksiWithLike()
+	{
+		$this->db->order_by('id_order', 'desc');
+	    $this->db->like('to.status_transaksi', 5);
+	    $this->db->select('to.*');
+	    $this->db->select('tu.*');
+	    $this->db->from('tbl_order to');
+	    $this->db->join('tbl_user tu', 'tu.id_user = to.id_user', 'left');
+		
+		return $this->db->get();
+	}
+
 }
 
 /* End of file Barang.php */

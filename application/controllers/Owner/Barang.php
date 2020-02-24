@@ -73,11 +73,11 @@ class Barang extends CI_Controller {
 	//query
 	public function add_brg()
     {
-	    $config['upload_path']          = './assets/img/barang/';
-	    $config['allowed_types']        = 'gif|jpg|png|jpeg';
-	    $config['max_size']             = 0;
-	    $config['max_width']            = 0;
-	    $config['max_height']           = 0;
+		$config['upload_path']   = './assets/img/barang/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|PNG|JPG|GIF|JPEG';
+		$config['max_size']      = 0;
+		$config['max_width']     = 0;
+		$config['max_height']    = 0;
 	    $this->load->library('upload', $config);
 	    if (!$this->upload->do_upload('photo_brg')){
 	        $data = array(

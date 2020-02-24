@@ -19,6 +19,7 @@
     <div class="container">
         <div class="cart_inner">
             <div class="table-responsive">
+                <?= $this->session->flashdata('message'); ?>
                 <div class="bg-secondary p-3 text-white mb-4">
                     <div class="m-4">
                         <div class="mb-1">
@@ -26,14 +27,36 @@
                         </div>
                         <div>
                             <label class="h1 ml-5 text-warning">Rp<?= $total ?>,00</label>
-                            <label class="h1 mr-5 text-warning float-right">
-                                <label class="btn btn-warning">Belum Dibayar</label>
+                            <label class="mr-5 text-warning float-right">
+                                <?php
+                                    if ($status_transaksi == 1) {
+                                        echo "<label class='text-white bg-danger p-3'>BELUM DIBAYAR</label>";
+                                    } else if($status_transaksi == 2){
+                                        echo "<label class='text-white bg-warning p-3'><em class='fa fa-check'></em> MENUNGGU VERIFIKASI</label>";
+                                    } else if($status_transaksi == 3){
+                                        echo "<label class='text-white bg-info p-3'>PENGEMASAN</label>";
+                                    } else if($status_transaksi == 4){
+                                        echo "<label class='text-white bg-primary p-3'>DELIVERY</label>";
+                                    }else{
+                                        echo "<label class='text-white bg-success p-3'>SELESAI</label>";
+                                    }
+                                    
+                                ?>
                             </label>
                         </div>
                         <label for="" class="text-white">* Bayar sesuai jumlah diatas.</label><br>
                         <label for="" class="text-white">Dicek dalam waktu 24jam setelah bukti transfer</label>
+                        <?php
+                            if ($status_transaksi == 4) {
+                                echo '<hr>
+                                <a href="'.site_url('User/Transaksi/updateStatusTransfer/').$id_order.'" class="btn btn-block btn-success p-3">
+                                    <label for="">Tekan Disini jika Barang sudah diterima.</label>
+                                </a>';
+                            }
+                        ?>
                     </div>
                 </div>
+
                 <div class="p-3">
                     <p class="text-secondary">1. Gunakan ATM / iBanking / mBanking / setor tunai untuk transfer ke Rekening Bisikel Store berikut ini.</p>
                 </div>
@@ -49,20 +72,22 @@
                     <p class="text-secondary">* Pembayaran Bisikel Store didukung oleh PT AirPay International Indonesia</p>
                     <p class="text-secondary">Hanya menerima dari Bank BRI</p>
                     <p class="">2. Silahkan Upload Bukti Transfer.</p>
+                    <p class="text-secondary">* Jika Anda sudah melakukan Upload Bukti Bayar. Anda akan melihat status Belum Bayar berubah menjadi <i>Menunggu Verifikasi Penjual</i></p>
                 </div>
                 <div class="bg-secondary p-4 text-white">
+                <?= form_open_multipart('User/Transaksi/uploadBuktiBayar/')?>
+                    <input name="id_order" type="hidden" value="<?= $id_order ?>">
                     <label for="" class="text-white">* Untuk Upload Bukti Bayar. Silahkan klik form dibawah ini.</label>
-                    <input type="file" class="form-control mb-4">
+                    <!-- <input name="" type="file" class="form-control mb-4"> -->
+                    <input type="file" name="photo_bukti" value="" class="form-control mb-4">
 
-                    <a href="#" class="btn btn-block btn-warning">
+                    <button class="btn btn-block btn-warning">
                         Upload Sekarang
-                    </a>
+                    </button>
                     <a href="<?= site_url('User/Home') ?>" class="btn btn-block btn-outline-warning">
                         Upload Nanti
                     </a>
-                </div>
-                <div class="p-3">
-                    <p class="text-secondary">* Jika Anda sudah melakukan Upload Bukti Bayar. Anda akan melihat status Belum Bayar berubah menjadi <i>Menunggu Verifikasi Penjual</i></p>
+                    <?= form_close(); ?>
                 </div>
             </div>
         </div>

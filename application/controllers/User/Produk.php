@@ -5,12 +5,17 @@ class Produk extends CI_Controller {
 
 	public function detail($id_brg)
 	{
-		$data['brg'] = $this->um->getDetailProduk($id_brg)->row();
 		$id_user = $this->session->userdata('id_user');
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 
-
+		$data['brg'] = $this->um->getDetailProduk($id_brg)->row();
 		$this->lo->pageUser('detail_produk', $data);
+		// if ($id_brg != NULL) {
+		// } else {
+		// 	// redirect($_SERVER['HTTP_REFERER'],'refresh');
+		// }
+		
+
 	}
 
 }
