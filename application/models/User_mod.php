@@ -66,6 +66,18 @@ class User_mod extends CI_Model {
 	    return $this->db->get();
 	}
 
+	public function getbrandBymerk($merk = NULL)
+	{
+		$this->db->order_by('id_brg', 'desc');
+	    $this->db->select('*');
+	    $this->db->from('tbl_brg');
+	    if ($merk != NULL) {
+		    $this->db->where('id_brand', $merk);
+	    }
+	    
+	    return $this->db->get();
+	}
+
 	public function InsertLastId($table, $data)
 	{
 		$this->db->insert($table, $data);
