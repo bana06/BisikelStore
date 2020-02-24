@@ -12,6 +12,8 @@
 	<!-- End Header Area -->
 
 	<!-- content start -->
+                  <?= $this->session->flashdata('message'); ?>
+	
 	<?= $content ?>
 	<!-- end content -->
 

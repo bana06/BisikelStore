@@ -7,9 +7,16 @@
       <div class="card-body">
       <?= form_open_multipart('Owner/Barang/edit_brg') ?>
         <div class="form-group">
-          <input type="hidden" name="id_brg" value="<?= $brg->id_brg ?>">
-          <label for="">Nama Barang</label>
-          <input type="text" name="nama_brg" value="<?= $brg->nama_brg ?>" placeholder="Masukkan nama barang disini..." class="form-control">
+          <div class="row">
+            <div class="col-md-9">
+              <label for="">Nama Barang</label>
+              <input type="text" name="nama_brg" value="<?= $brg->nama_brg ?>" class="form-control">
+            </div>
+            <div class="col-md-3">
+              <label for="">Tahun Keluar</label>
+              <input type="text" name="tahun_keluar" class="form-control" value="<?= $brg->tahun_keluar ?>" required>
+            </div>
+          </div>
         </div>
         <div class="form-group">
          <div class="row">

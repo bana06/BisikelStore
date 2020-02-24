@@ -5,6 +5,7 @@
 </div>
 
 <!-- Content Row -->
+<?= $this->session->flashdata('message'); ?>
 <div class="row">
 
   <!-- Earnings (Monthly) Card Example -->

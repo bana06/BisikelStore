@@ -180,13 +180,15 @@ class Barang extends CI_Controller {
 	    if (!$this->upload->do_upload('photo_brg')){
             $data = array(
 				'nama_brg'        => $this->input->post('nama_brg'),
+				'tahun_keluar'    => $this->input->post('tahun_keluar'),
 				'harga_brg'       => $this->input->post('harga_brg'),
 				'stok'            => $this->input->post('stok'),
 				'id_brand'        => $this->input->post('id_brand'),
 				'id_kategori_brg' => $this->input->post('id_kategori_brg'),
 				'deskripsi'       => $this->input->post('deskripsi'),
 				'id_status'       => 1,
-            );
+				'photo_brg'       => $_data['upload_data']['file_name']
+	            );
 	        $query = $this->all->update($this->table, ['id_brg'=>$id_brg], $data);
 	        if($query){
 	            echo 'berhasil di upload';
@@ -196,8 +198,9 @@ class Barang extends CI_Controller {
 	        }
 	    }else{
 	        $_data = array('upload_data' => $this->upload->data());
-	         $data = array(
+	        $data = array(
 				'nama_brg'        => $this->input->post('nama_brg'),
+				'tahun_keluar'    => $this->input->post('tahun_keluar'),
 				'harga_brg'       => $this->input->post('harga_brg'),
 				'stok'            => $this->input->post('stok'),
 				'id_brand'        => $this->input->post('id_brand'),
