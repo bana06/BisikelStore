@@ -75,6 +75,15 @@ class Transaksi extends CI_Controller {
 			];
 
 			$q2 = $this->all->menambah('tbl_detail_order', $dataDetailOrder);
+
+			//hapus gambar
+		    $get_data = $this->all->mengambil('tbl_cart', ['id_brg'=>$id_brg])->row();
+			$dropDataCart = $this->all->delete('tbl_cart', ['id_brg'=>$id_brg]);
+
+		    if ($dropDataCart) {
+		    	unlink('assets/img/barang/'.$get_data->photo_brg);
+		    }
+
 		} else {
 			foreach ($q as $key) {
 				$data['total'] = $key->total;
@@ -113,6 +122,17 @@ class Transaksi extends CI_Controller {
 				// var_dump($dataDetailOrder);
 				// die;
 			}
+
+			//hapus gambar
+		    $get_data = $this->all->mengambil('tbl_cart')->result();
+			$dropDataCart = $this->all->delete('tbl_cart');
+
+		    foreach ($get_data as $gd) {
+		    	if ($dropDataCart) {
+			    	unlink('assets/img/barang/'.$gd->photo_brg);
+			    }
+		    }
+
 		}
 		redirect('User/Transaksi/getView2/'.$id_order,'refresh');
 	}
