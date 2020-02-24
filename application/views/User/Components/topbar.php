@@ -19,13 +19,16 @@
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" <?= ($this->uri->segment(2) == 'controllernya')? 'active' : '' ?>
 							 aria-expanded="false">MERK</a>
 							<ul class="dropdown-menu ">
-								
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('User/Merk') ?>">Pacific</a></li>
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">Polygon</a></li>
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">United</a></li>
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">Santa Cruz</a></li>
-									<li class="nav-item"><a class="nav-link" href="<?= site_url('') ?>">GT</a></li>
-								
+								<?php
+									foreach ($getCategory as $q) :
+								?>
+									<li class="nav-item">
+										<a class="nav-link" href="<?= site_url('User/Merk/getProdukByCategori/').$q->id_brand ?>">
+										<?= $q->brand; ?>
+										</a>
+									</li>
+									
+								<?php endforeach; ?>
 							</ul>
 						</li>
 
