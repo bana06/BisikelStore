@@ -78,7 +78,10 @@ class Transaksi extends CI_Controller {
 
 			//hapus gambar
 		    $get_data = $this->all->mengambil('tbl_cart', ['id_brg'=>$id_brg])->row();
-			$dropDataCart = $this->all->delete('tbl_cart', ['id_brg'=>$id_brg]);
+			$dropDataCart = $this->all->delete('tbl_cart', [
+				'id_brg'=>$id_brg,
+				'id_user'=>$id_user,
+			]);
 
 		    if ($dropDataCart) {
 		    	unlink('assets/img/barang/'.$get_data->photo_brg);
@@ -124,8 +127,10 @@ class Transaksi extends CI_Controller {
 			}
 
 			//hapus gambar
-		    $get_data = $this->all->mengambil('tbl_cart')->result();
-			$dropDataCart = $this->all->delete('tbl_cart');
+		    $get_data = $this->all->mengambil('tbl_cart', ['id_brg'=>$id_brg])->result();
+			$dropDataCart = $this->all->delete('tbl_cart', [
+				'id_user'=>$id_user,
+			]);
 
 		    foreach ($get_data as $gd) {
 		    	if ($dropDataCart) {
