@@ -17,6 +17,7 @@ class Merk extends CI_Controller {
 		$data['countCart'] = $this->um->getWithJoin($id_user)->num_rows();
 
 		$data['brg'] = $this->um->getbrandBymerk()->result();
+		$data['getBrand'] = $this->all->mengambil('tbl_brand')->result();
 		$data['getCategory'] = $this->all->mengambil('tbl_brand')->result();
 
 		// var_dump($data);
