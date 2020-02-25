@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2020 at 01:28 AM
+-- Generation Time: Feb 25, 2020 at 03:20 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -95,7 +95,7 @@ CREATE TABLE `tbl_brg` (
 
 INSERT INTO `tbl_brg` (`id_brg`, `nama_brg`, `tahun_keluar`, `harga_brg`, `diskon`, `harga_after_diskon`, `stok`, `photo_brg`, `deskripsi`, `id_status`, `id_brand`, `id_kategori_brg`) VALUES
 (4, 'Piringan Sepeda', '2001', '150000', '50', '75000', '32', 'bc2.jpeg', 'baru baru baru', 1, 4, 2),
-(11, 'poligon', '1900', '20000000', '', '', '10', 'bc34.jpeg', 'belii', 1, 0, 0),
+(11, 'poligon', '1900', '20000000', '80', '4000000', '10', 'bc34.jpeg', 'belii', 1, 0, 0),
 (12, 'Santacruz bycycle', '2020', '3000000', '', '', '3', 'banner-img1.png', 'New for Downhill', 1, 7, 1),
 (13, 'United Venus 1.00', '2020', '2930000', '', '', '10', 'Sepeda-United-Venus-1-26-new-1.jpg', 'Baru', 1, 12, 1),
 (14, 'Rantai United Premium', '2001', '120000', '', '', '5', 'bc51.jpeg', '', 1, 0, 0),
@@ -142,6 +142,85 @@ INSERT INTO `tbl_cart` (`id_cart`, `id_brg`, `jumlah_pesanan`, `total`, `id_user
 (31, 12, '1', '3000000', 5),
 (32, 6, '1', '800000', 6),
 (33, 12, '1', '3000000', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_detail_order`
+--
+
+CREATE TABLE `tbl_detail_order` (
+  `id_detail_order` int(11) NOT NULL,
+  `id_order` varchar(255) NOT NULL,
+  `id_cart` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_detail_order`
+--
+
+INSERT INTO `tbl_detail_order` (`id_detail_order`, `id_order`, `id_cart`, `keterangan`) VALUES
+(1, 'BRG-2020-0001', 27, '-'),
+(2, 'BRG-2020-0002', 27, '-'),
+(3, 'BRG-2020-0002', 25, '-'),
+(4, 'BRG-2020-0002', 22, '-'),
+(5, 'BRG-2020-0003', 25, '-'),
+(6, 'BRG-2020-0004', 22, '-'),
+(7, 'BRG-2020-0005', 27, '-'),
+(8, 'BRG-2020-0006', 27, '-'),
+(9, 'BRG-2020-0006', 25, '-'),
+(10, 'BRG-2020-0006', 22, '-'),
+(11, 'BRG-2020-0007', 30, '-'),
+(12, 'BRG-2020-0008', 33, '-'),
+(13, 'BRG-2020-0009', 33, '-'),
+(14, 'BRG-2020-0009', 32, '-'),
+(15, 'BRG-2020-0009', 20, '-'),
+(16, 'BRG-2020-0009', 19, '-'),
+(17, 'BRG-2020-0010', 32, '-'),
+(18, 'BRG-2020-0011', 32, '-'),
+(19, 'BRG-2020-0012', 33, '-'),
+(20, 'BRG-2020-0013', 34, '-'),
+(21, 'BRG-2020-0014', 35, '-'),
+(22, 'BRG-2020-0015', 35, '-'),
+(23, 'BRG-2020-0016', 34, '-'),
+(24, 'BRG-2020-0017', 37, '-'),
+(25, 'BRG-2020-0018', 39, '-'),
+(26, 'BRG-2020-0019', 38, '-'),
+(27, 'BRG-2020-0020', 39, '-'),
+(28, 'BRG-2020-0021', 36, '-'),
+(29, 'BRG-2020-0022', 36, '-'),
+(30, 'BRG-2020-0023', 36, '-'),
+(31, 'BRG-2020-0024', 36, '-'),
+(32, 'BRG-2020-0025', 36, '-'),
+(33, 'BRG-2020-0026', 36, '-'),
+(34, 'BRG-2020-0027', 36, '-'),
+(35, 'BRG-2020-0028', 36, '-'),
+(36, 'BRG-2020-0029', 36, '-'),
+(37, 'BRG-2020-0030', 36, '-'),
+(38, 'BRG-2020-0031', 36, '-'),
+(39, 'BRG-2020-0032', 40, '-'),
+(40, 'BRG-2020-0033', 41, '-'),
+(41, 'BRG-2020-0034', 36, '-'),
+(42, 'BRG-2020-0035', 36, '-'),
+(43, 'BRG-2020-0036', 36, '-'),
+(44, 'BRG-2020-0037', 36, '-'),
+(45, 'BRG-2020-0038', 42, '-'),
+(46, 'BRG-2020-0039', 44, '-'),
+(47, 'BRG-2020-0040', 46, '-'),
+(48, 'BRG-2020-0041', 44, '-'),
+(49, 'BRG-2020-0042', 44, '-'),
+(50, 'BRG-2020-0042', 44, '-'),
+(51, 'BRG-2020-0043', 44, '-'),
+(52, 'BRG-2020-0044', 49, '-'),
+(53, 'BRG-2020-0045', 47, '-'),
+(54, 'BRG-2020-0046', 47, '-'),
+(55, 'BRG-2020-0047', 47, '-'),
+(56, 'BRG-2020-0048', 47, '-'),
+(57, 'BRG-2020-0048', 43, '-'),
+(58, 'BRG-2020-0049', 51, '-'),
+(59, 'BRG-2020-0049', 50, '-'),
+(60, 'BRG-2020-0050', 52, '-');
 
 -- --------------------------------------------------------
 
@@ -297,6 +376,12 @@ ALTER TABLE `tbl_cart`
   ADD PRIMARY KEY (`id_cart`);
 
 --
+-- Indexes for table `tbl_detail_order`
+--
+ALTER TABLE `tbl_detail_order`
+  ADD PRIMARY KEY (`id_detail_order`);
+
+--
 -- Indexes for table `tbl_kategori_brg`
 --
 ALTER TABLE `tbl_kategori_brg`
@@ -341,6 +426,12 @@ ALTER TABLE `tbl_brg`
 --
 ALTER TABLE `tbl_cart`
   MODIFY `id_cart` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `tbl_detail_order`
+--
+ALTER TABLE `tbl_detail_order`
+  MODIFY `id_detail_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `tbl_kategori_brg`
